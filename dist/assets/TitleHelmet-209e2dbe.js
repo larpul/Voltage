@@ -1,0 +1,1 @@
+import{j as t}from"./index-b47964ec.js";import{H as r}from"./Helmet-a5e744f8.js";const o=({title:e})=>t.jsx(t.Fragment,{children:t.jsx(r,{children:t.jsxs("title",{children:[e," | Window - React Admin & Dashboard"]})})});export{o as T};
