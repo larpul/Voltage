@@ -30,5 +30,4 @@ export const appsData: appsData[] = [
     name: 'Gitlab',
     img: gitlab,
   },
-  
 ]
