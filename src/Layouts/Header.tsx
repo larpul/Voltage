@@ -1,4 +1,3 @@
-import { ThemeSettings, useThemeContext } from '@/common'
 import {
   Activity,
   DarkLight,
@@ -6,10 +5,8 @@ import {
   Notifications,
   Profile,
   Search,
-  useThemeCustomizer,
 } from '@/components'
 import Logo from '@/components/Common/Logo'
-import { useViewport } from '@/hooks'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import MegaMenu from './MegaMenu'
@@ -20,9 +17,6 @@ type HeaderProps = {
 }
 
 const Header = ({ toggleMenu, navOpen }: HeaderProps) => {
-  const { width } = useViewport()
-  const { sidenavType } = useThemeCustomizer()
-  const { updateSidebar } = useThemeContext()
   const [megaMenuOpen, setMegaMenuOpen] = useState(false)
 
   function handleMegaMenuClick() {
@@ -59,46 +53,7 @@ const Header = ({ toggleMenu, navOpen }: HeaderProps) => {
     hideBackdrop()
   }
 
-  const handleLeftMenuCallBack = () => {
-    if (width < 768) {
-      if (sidenavType === 'full') {
-        showLeftSideBarBackdrop()
-        document.getElementsByTagName('html')[0].classList.add('sidebar-enable')
-      } else {
-        updateSidebar({ size: ThemeSettings.sidebar.size.full })
-      }
-    } else if (sidenavType === 'iconbar') {
-      updateSidebar({ size: ThemeSettings.sidebar.size.default })
-    } else if (sidenavType === 'full') {
-      showLeftSideBarBackdrop()
-      document.getElementsByTagName('html')[0].classList.add('sidebar-enable')
-    } else if (sidenavType === 'fullscreen') {
-      updateSidebar({ size: ThemeSettings.sidebar.size.default })
-      document.getElementsByTagName('html')[0].classList.add('sidebar-enable')
-    } else {
-      updateSidebar({ size: ThemeSettings.sidebar.size.iconbar })
-    }
-  }
 
-  function showLeftSideBarBackdrop() {
-    const backdrop = document.createElement('div')
-    backdrop.id = 'custom-backdrop'
-    backdrop.className = 'offcanvas-backdrop fade show'
-    document.body.appendChild(backdrop)
-
-    backdrop.addEventListener('click', function () {
-      document.getElementsByTagName('html')[0].classList.remove('sidebar-enable')
-      hideLeftSideBarBackdrop()
-    })
-  }
-
-  function hideLeftSideBarBackdrop() {
-    const backdrop = document.getElementById('custom-backdrop')
-    if (backdrop) {
-      document.body.removeChild(backdrop)
-      document.body.style.removeProperty('overflow')
-    }
-  }
 
   return (
     <>

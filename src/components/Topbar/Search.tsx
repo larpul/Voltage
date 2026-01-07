@@ -134,7 +134,7 @@ const Search = () => {
             Search by <span className="fw-bold text-primary">
 
 
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="90.479" height="27.757" viewBox="0 0 90.479 27.757">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="90.479" height="27.757" viewBox="0 0 90.479 27.757">
   <defs>
     <clipPath id="clip-path">
       <rect id="Rectangle_316" data-name="Rectangle 316" width="90.479" height="27.757" fill="none"/>

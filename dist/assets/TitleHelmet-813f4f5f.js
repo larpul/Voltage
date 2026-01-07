@@ -1,0 +1,1 @@
+import{j as t}from"./index-0da5cf11.js";import{H as r}from"./Helmet-9c6f4837.js";const i=({title:e})=>t.jsx(t.Fragment,{children:t.jsx(r,{children:t.jsxs("title",{children:[e," | Voltage"]})})});export{i as T};

@@ -13,7 +13,7 @@ const Copyright = () => {
         <span>
          {' '}
           <Link to="mailto:larpul33@gmail.com">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="108.928" height="33.417" viewBox="0 0 108.928 33.417">
+          <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="108.928" height="33.417" viewBox="0 0 108.928 33.417">
   <defs>
     <clipPath id="clip-path">
       <rect id="Rectangle_316" data-name="Rectangle 316" width="108.928" height="33.417" fill="none"/>
