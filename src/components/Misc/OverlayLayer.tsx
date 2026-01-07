@@ -9,7 +9,7 @@ const OverlayLayerStyle: CSSProperties = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  backgroundColor: 'rgba(30, 33, 40, 0.2)',
+  backgroundColor: 'rgba(76, 78, 84, 0.2)',
   borderRadius: '0.5rem',
   transition: 'all .3s ease',
 }

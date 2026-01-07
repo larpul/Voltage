@@ -142,16 +142,16 @@ const MENU_ITEMS: MenuItemTypes[] = [
     ],
   },
   {
-    key: 'tables',
-    label: 'Tables',
+    key: 'data-tables',
+    label: 'Data Tables',
     isTitle: false,
     icon: 'fi fi-rr-table-list',
     children: [
       {
         key: 'bootstap-table',
-        label: 'Bootstrap',
+        label: 'Dynamic Table',
         url: '/components/tables/bootstap-table',
-        parentKey: 'tables',
+        parentKey: 'data-tables',
       },
       {
         key: 'react-table',

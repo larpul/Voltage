@@ -11,7 +11,7 @@ const MenuCard = () => {
         ></i>
         <h6 className="fs-16 text-uppercase text-primary fw-bold mb-2">Support Center</h6>
         <p className="fs-13 fw-lighter mb-4">
-          Window is a production ready admin dashboard to get started up and running quickly.
+          Voltage Design System is an npm package that can be installed in minutes, giving teams everything they need to get started quickly and build consistently.
         </p>
         <Link to="mailto:wrapcoders@gmail.com" className="btn btn-primary w-100">
           Get Support
