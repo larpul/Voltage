@@ -18,15 +18,15 @@ interface appsData {
 
 export const appsData: appsData[] = [
   {
-    name: 'Gmail',
+    name: 'NPM',
     img: gmail,
   },
   {
-    name: 'Dropbox',
+    name: 'Github',
     img: dropbox,
   },
   {
-    name: 'Gdrive',
+    name: 'Sketch',
     img: gDrive,
   },
   {
@@ -34,35 +34,8 @@ export const appsData: appsData[] = [
     img: figma,
   },
   {
-    name: 'Github',
-    img: github,
-  },
-  {
     name: 'Gitlab',
     img: gitlab,
   },
-  {
-    name: 'Instagram',
-    img: instagram,
-  },
-  {
-    name: 'Pinterest',
-    img: pinterest,
-  },
-  {
-    name: 'Facebook',
-    img: facebook,
-  },
-  {
-    name: 'Shopify',
-    img: shopify,
-  },
-  {
-    name: 'Spotify',
-    img: spotify,
-  },
-  {
-    name: 'Whatsapp',
-    img: whatsapp,
-  },
+  
 ]

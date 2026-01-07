@@ -1,6 +1,7 @@
 import { ThemeSettings, useThemeContext } from '@/common'
 import {
   Activity,
+  Applications,
   DarkLight,
   Helpdesk,
   Notifications,
@@ -13,6 +14,7 @@ import { useViewport } from '@/hooks'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import MegaMenu from './MegaMenu'
+import AppMenu from './Menu'
 
 type HeaderProps = {
   toggleMenu?: () => void
@@ -117,11 +119,13 @@ const Header = ({ toggleMenu, navOpen }: HeaderProps) => {
           <div className="header-right d-flex align-items-center justify-content-center">
             <Search />
             <span className="d-none d-sm-flex">
+              <Applications />
               <Activity />
               <Helpdesk />
             </span>
             <Notifications />
             <Profile />
+            
             <div className="header-btn pe-md-0 d-lg-none" onClick={handleMegaMenuClick}>
               <i className="fi fi-rr-menu-burger"></i>
             </div>

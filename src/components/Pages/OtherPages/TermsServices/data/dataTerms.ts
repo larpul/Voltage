@@ -5,8 +5,22 @@ interface DataTermsItem {
 
 const dataTerms: DataTermsItem[] = [
   {
-    title: 'Communications',
-    desc: `<p>By using our Service, you agree to subscribe to newsletters, marketing or promotional materials and other information we may send. However, you may opt out of receiving any, or all, of these communications from us by following the unsubscribe link or by emailing at support@wrapcoders.com</p>`,
+    title: 'Goals',
+    desc: `<p> -Provide a single source of truth for UI components <br> <br>
+
+- Ensure visual and functional consistency across products <br><br>
+
+- Accelerate development through reusable, well-documented components <br><br>
+
+- Support accessibility (WCAG-compliant where applicable) <br><br>
+
+- Foster collaboration between designers and developers <br><br>
+
+- Facilitate easy theming and customization <br><br>
+
+- Promote best practices in UI/UX design <br><br>
+
+- Enable scalability and long-term maintainability</p>`,
   },
   {
     title: 'Purchases',
