@@ -16,8 +16,8 @@ const BootstapTable = () => {
   return (
     <>
       <PageBreadcrumbButton
-        title="Bootstrap"
-        subName="Tables"
+        title="Data Table Version 1"
+        subName="Data Tables"
         url={'https://react-bootstrap.netlify.app/docs/components/table'}
       />
       <Row className="g-3 g-md-4">

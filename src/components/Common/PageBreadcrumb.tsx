@@ -12,7 +12,7 @@ const PageBreadcrumb = ({ subName, title, addedChild }: PageTitleProps) => {
   return (
     <>
       <Helmet>
-        <title>{title} | Window - React Admin & Dashboard</title>
+        <title>{title} | Voltage - Design System</title>
       </Helmet>
       {subName && (
         <div className="mt-2 mb-4 mb-md-6">
