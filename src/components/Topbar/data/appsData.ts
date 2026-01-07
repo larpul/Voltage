@@ -1,6 +1,6 @@
-import gmail from '@/assets/images/brands/gmail.png'
-import dropbox from '@/assets/images/brands/dropbox.png'
-import gDrive from '@/assets/images/brands/google-drive.png'
+import npm from '@/assets/images/brands/gmail.png'
+import github from '@/assets/images/brands/github.png'
+import sketch from '@/assets/images/brands/sketch.png'
 import figma from '@/assets/images/brands/figma.png'
 import gitlab from '@/assets/images/brands/gitlab.png'
 
@@ -12,15 +12,15 @@ interface appsData {
 export const appsData: appsData[] = [
   {
     name: 'NPM',
-    img: gmail,
+    img: npm,
   },
   {
     name: 'Github',
-    img: dropbox,
+    img: github,
   },
   {
     name: 'Sketch',
-    img: gDrive,
+    img: sketch,
   },
   {
     name: 'Figma',

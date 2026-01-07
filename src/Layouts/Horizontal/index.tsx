@@ -57,13 +57,13 @@ const HorizontalLayout = ({ children }: HorizontaLayoutProps) => {
         <main className="main-content">
           <div
             className={`inner-content ${
-              location.pathname.startsWith('/components/base/accordions') ? 'Base UI': ''
+              location.pathname.startsWith('/apps/') ? 'apps-content' : ''
             }`}>
             <Suspense fallback={<Preloader />}>{children}</Suspense>
           </div>
         </main>
 
-        {!['/components/base/accordions'].some((path) => location.pathname.startsWith(path)) && (
+        {!['/apps/'].some((path) => location.pathname.startsWith(path)) && (
           <Suspense fallback={<div />}>
             <Footer />
           </Suspense>

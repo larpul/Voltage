@@ -14,7 +14,6 @@ import { useViewport } from '@/hooks'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import MegaMenu from './MegaMenu'
-import AppMenu from './Menu'
 
 type HeaderProps = {
   toggleMenu?: () => void
