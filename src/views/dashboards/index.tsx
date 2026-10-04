@@ -11,6 +11,7 @@ import {
   InstallationMapCard,
   SalesAgentsMapCard,
   SiteVisitCalendarCard,
+  SmartSchedulingCard,
 } from '@/components/Dashboards/Solar'
 import { SalesLocationCard } from '@/components/Dashboards/Ecommerce'
 import { Col, Row } from 'react-bootstrap'
@@ -34,6 +35,9 @@ const Solar = () => {
         </Col>
         <Col xl={4}>
           <WeeklyAppointmentsCard />
+        </Col>
+        <Col xl={4}>
+          <SmartSchedulingCard />
         </Col>
         <Col xl={8}>
           <SalesLocationCard />

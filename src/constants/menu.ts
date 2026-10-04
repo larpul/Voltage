@@ -445,6 +445,13 @@ const MENU_ITEMS: MenuItemTypes[] = [
     icon: 'fi fi-rr-calendar-check',
     parentKey: 'apps',
   },
+  {
+    key: 'smart-scheduling',
+    label: 'Smart Scheduling',
+    url: '/dashboards/smart-scheduling',
+    icon: 'fi fi-rr-magic-wand',
+    parentKey: 'apps',
+  },
   // Pages
   {
     key: 'pages',
@@ -969,6 +976,12 @@ const HORIZONTAL_MENU_ITEMS: MenuItemTypes[] = [
         key: 'site-visit-calendar',
         label: 'Site Visits',
         url: '/dashboards/site-visits',
+        parentKey: 'dashboard',
+      },
+      {
+        key: 'smart-scheduling',
+        label: 'Smart Scheduling',
+        url: '/dashboards/smart-scheduling',
         parentKey: 'dashboard',
       },
       // {

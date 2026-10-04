@@ -85,7 +85,7 @@ export const salesAgents: SalesAgent[] = [
   {
     id: 5,
     name: 'David Park',
-    avatar: 'https://images.unsplash.com/photo-1633332755192-780a367c9a11?w=150&h=150&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
     currentLocation: '2450 Riverside Dr, Cincinnati, OH',
     coords: [39.0994, -84.4881],
     status: 'Active',
@@ -113,6 +113,22 @@ export const salesAgents: SalesAgent[] = [
     monthlyEarned: 12000,
     commissionRate: 6,
     dealsClosed: 1,
+  },
+  {
+    id: 7,
+    name: 'You (Admin)',
+    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face',
+    currentLocation: '600 Vine St, Cincinnati, OH',
+    coords: [39.1015, -84.512],
+    status: 'Active',
+    lastUpdated: 'Just now',
+    assignedInstallations: 0,
+    phone: '(513) 555-0107',
+    email: 'admin@volt360.com',
+    monthlyGoal: 75000,
+    monthlyEarned: 0,
+    commissionRate: 8,
+    dealsClosed: 0,
   },
 ]
 
