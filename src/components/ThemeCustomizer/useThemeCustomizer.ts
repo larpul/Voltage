@@ -32,6 +32,12 @@ export default function useThemeCustomizer() {
       case 'secondary':
         updateSettings({ color: ThemeSettings.color.secondary })
         break
+      case 'black':
+        updateSettings({ color: ThemeSettings.color.black })
+        break
+      case 'gray':
+        updateSettings({ color: ThemeSettings.color.gray })
+        break
       default:
         updateSettings({ color: ThemeSettings.color.primary })
         break

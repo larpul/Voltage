@@ -10,6 +10,8 @@ export const ThemeSettings = {
     info: 'info',
     danger: 'danger',
     secondary: 'secondary',
+    black: 'black',
+    gray: 'gray',
   },
   layout: {
     type: { vertical: 'vertical', horizontal: 'horizontal' },
