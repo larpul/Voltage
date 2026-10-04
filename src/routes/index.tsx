@@ -8,6 +8,7 @@ import PrivateRoute from './PrivateRoute'
 const Ecommerce = React.lazy(() => import('./../views/dashboards'))
 const Analytics = React.lazy(() => import('./../views/dashboards/Analytics'))
 const CRM = React.lazy(() => import('./../views/dashboards/CRM'))
+const InstallationDetail = React.lazy(() => import('./../views/dashboards/InstallationDetail'))
 
 // Apps
 const Chat = React.lazy(() => import('./../views/apps/Chat'))
@@ -225,6 +226,12 @@ const dashboardRoutes: RoutesProps = {
       path: '/dashboards/crm',
       name: 'CRM',
       element: <CRM />,
+      route: PrivateRoute,
+    },
+    {
+      path: '/installations/:id',
+      name: 'Installation Detail',
+      element: <InstallationDetail />,
       route: PrivateRoute,
     },
   ],

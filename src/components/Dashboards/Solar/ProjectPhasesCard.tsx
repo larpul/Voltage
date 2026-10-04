@@ -3,51 +3,12 @@ import { Link } from 'react-router-dom'
 import { Card, Dropdown, DropdownDivider } from 'react-bootstrap'
 import Avatar from '@/components/UiElements/Base/Avatars/Avatar'
 
-import avatar1 from '@/assets/images/avatars/1.png'
-import avatar2 from '@/assets/images/avatars/2.png'
-import avatar3 from '@/assets/images/avatars/3.png'
-import avatar4 from '@/assets/images/avatars/4.png'
-import avatar5 from '@/assets/images/avatars/5.png'
-import avatar6 from '@/assets/images/avatars/6.png'
-
-type Phase = 'Site Survey' | 'Permit Review' | 'Pending Install' | 'Installation' | 'Completed'
-
-interface Project {
-  id: number
-  customer: string
-  avatar: string
-  address: string
-  systemSize: string
-  phase: Phase
-}
-
-const projects: Project[] = [
-  { id: 1, customer: 'Archie Tones', avatar: avatar1, address: '128 Maple St, Austin TX', systemSize: '8.5 kW', phase: 'Permit Review' },
-  { id: 2, customer: 'Holmes Cherry', avatar: avatar2, address: '45 Oak Ave, Denver CO', systemSize: '10.2 kW', phase: 'Completed' },
-  { id: 3, customer: 'Malanie Hanvey', avatar: avatar3, address: '72 Pine Rd, Phoenix AZ', systemSize: '6.0 kW', phase: 'Pending Install' },
-  { id: 4, customer: 'Kenneth Hune', avatar: avatar4, address: '15 Birch Ln, Portland OR', systemSize: '12.4 kW', phase: 'Site Survey' },
-  { id: 5, customer: 'Valentine Maton', avatar: avatar5, address: '301 Cedar Dr, Miami FL', systemSize: '9.8 kW', phase: 'Pending Install' },
-  { id: 6, customer: 'Selina Kyle', avatar: avatar6, address: '88 Elm Ct, Dallas TX', systemSize: '7.2 kW', phase: 'Completed' },
-  { id: 7, customer: 'Bruce Wayne', avatar: avatar1, address: '1007 Mountain Dr, Gotham NJ', systemSize: '15.0 kW', phase: 'Permit Review' },
-  { id: 8, customer: 'Diana Prince', avatar: avatar2, address: '1200 Themis Blvd, DC', systemSize: '11.5 kW', phase: 'Installation' },
-]
-
-const phaseConfig: Record<Phase, { color: string; step: number }> = {
-  'Site Survey': { color: 'info', step: 1 },
-  'Permit Review': { color: 'warning', step: 2 },
-  'Pending Install': { color: 'primary', step: 3 },
-  'Installation': { color: 'info', step: 4 },
-  'Completed': { color: 'success', step: 5 },
-}
-
-const PHASE_STEPS = 5
-
-type Filter = Phase | 'All'
+import { installations, phaseConfig, PHASE_STEPS, Phase, Filter } from './installationData'
 
 const ProjectPhasesCard = () => {
   const [filter, setFilter] = useState<Filter>('All')
 
-  const filtered = filter === 'All' ? projects : projects.filter((p) => p.phase === filter)
+  const filtered = filter === 'All' ? installations : installations.filter((p) => p.phase === filter)
 
   const summary: { phase: Phase; icon: string }[] = [
     { phase: 'Permit Review', icon: 'fi-rr-document' },
@@ -84,7 +45,7 @@ const ProjectPhasesCard = () => {
       <Card.Body className="pb-0">
         <div className="d-flex gap-2 flex-wrap mb-3">
           {summary.map(({ phase, icon }) => {
-            const count = projects.filter((p) => p.phase === phase).length
+            const count = installations.filter((p) => p.phase === phase).length
             const active = filter === phase
             return (
               <span
@@ -123,15 +84,15 @@ const ProjectPhasesCard = () => {
           </thead>
           <tbody>
             {filtered.map((project) => (
-              <tr key={project.id}>
+              <tr key={project.id} style={{ cursor: 'pointer' }} className="hover-bg-light">
                 <td>
-                  <div className="hstack">
+                  <Link to={`/installations/${project.id}`} className="text-decoration-none text-reset d-flex align-items-center gap-2">
                     <Avatar size="md" type="image" src={project.avatar} alt={project.customer} />
-                    <div className="ms-3">
-                      <Link to="" className="d-block">{project.customer}</Link>
+                    <div>
+                      <span className="d-block fw-semibold">{project.customer}</span>
                       <span className="fs-12 text-muted">{project.address}</span>
                     </div>
-                  </div>
+                  </Link>
                 </td>
                 <td className="fs-13 text-muted">{project.systemSize}</td>
                 <td>
