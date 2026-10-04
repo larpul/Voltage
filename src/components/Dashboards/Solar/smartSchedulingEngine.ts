@@ -9,7 +9,8 @@ import { salesAgents, type SalesAgent, type AgentStatus } from './salesAgentsDat
  * weighted factors:
  *   - Proximity   (haversine distance between agent and installation)
  *   - Workload    (fewer active assignments is better)
- *   - Availability (Active > Traveling > On Site Visit > Off Duty)
+ *   - Availability (Active > Traveling > On Site Visit > Off Duty), overridden by an
+ *     agent's real free slots once their Google Calendar is synced
  *   - Performance (deals closed + progress toward monthly goal)
  */
 
@@ -52,6 +53,9 @@ const AVAILABILITY_SCORE: Record<AgentStatus, number> = {
   'Off Duty': 0.1,
 }
 
+/** Free slots in the synced calendar window that count as fully available. */
+export const LIVE_SLOT_BASELINE = 4
+
 const VISIT_TYPE_BY_PHASE: Record<Phase, string> = {
   'Site Survey': 'Site Survey Visit',
   'Permit Review': 'Permit Status Check',
@@ -73,11 +77,21 @@ function haversineMi(a: [number, number], b: [number, number]): number {
   return 2 * R * Math.asin(Math.sqrt(h))
 }
 
-function scoreAgent(agent: SalesAgent, installation: Installation): RankedAgent {
+/** A synced Google Calendar is authoritative; otherwise fall back to the status estimate. */
+function availabilityScore(agent: SalesAgent, liveFreeSlots?: number): number {
+  if (liveFreeSlots === undefined) return AVAILABILITY_SCORE[agent.status]
+  return Math.min(Math.max(liveFreeSlots, 0) / LIVE_SLOT_BASELINE, 1)
+}
+
+function scoreAgent(
+  agent: SalesAgent,
+  installation: Installation,
+  liveFreeSlots?: number,
+): RankedAgent {
   const distanceMi = haversineMi(agent.coords, installation.coords)
   const proximity = 1 / (1 + distanceMi)
   const workload = 1 / (1 + agent.assignedInstallations)
-  const availability = AVAILABILITY_SCORE[agent.status]
+  const availability = availabilityScore(agent, liveFreeSlots)
   const goalProgress = Math.min(agent.monthlyEarned / agent.monthlyGoal, 1)
   const performance = (goalProgress + Math.min(agent.dealsClosed / 10, 1)) / 2
 
@@ -97,6 +111,7 @@ function scoreAgent(agent: SalesAgent, installation: Installation): RankedAgent 
 function buildReasoning(
   ranked: RankedAgent[],
   installation: Installation,
+  liveFreeSlots?: number,
 ): string[] {
   const top = ranked[0]
   const f = top.factors
@@ -114,11 +129,19 @@ function buildReasoning(
     )
   }
 
-  reasons.push(
-    top.agent.status === 'Active'
-      ? 'Currently Active and ready to dispatch'
-      : `Status: ${top.agent.status}`,
-  )
+  if (liveFreeSlots === undefined) {
+    reasons.push(
+      top.agent.status === 'Active'
+        ? 'Currently Active and ready to dispatch'
+        : `Status: ${top.agent.status}`,
+    )
+  } else if (liveFreeSlots === 0) {
+    reasons.push('Google Calendar shows no free slots in the upcoming window')
+  } else {
+    reasons.push(
+      `${liveFreeSlots} free slot${liveFreeSlots > 1 ? 's' : ''} ahead, synced live from Google Calendar`,
+    )
+  }
 
   const goalPct = Math.round(
     (top.agent.monthlyEarned / top.agent.monthlyGoal) * 100,
@@ -130,13 +153,19 @@ function buildReasoning(
   return reasons
 }
 
-export function runSmartScheduling(): SchedulingRecommendation[] {
+/**
+ * @param liveAvailability agentId → free slots read from that agent's synced Google
+ *   Calendar. Agents missing from the map keep the status-based availability estimate.
+ */
+export function runSmartScheduling(
+  liveAvailability: Record<number, number> = {},
+): SchedulingRecommendation[] {
   const pending = installations.filter((i) => i.phase !== 'Completed')
 
   return pending
     .map((installation) => {
       const ranked = salesAgents
-        .map((agent) => scoreAgent(agent, installation))
+        .map((agent) => scoreAgent(agent, installation, liveAvailability[agent.id]))
         .sort((a, b) => b.score - a.score)
 
       const top = ranked[0]
@@ -151,7 +180,7 @@ export function runSmartScheduling(): SchedulingRecommendation[] {
         visitType: VISIT_TYPE_BY_PHASE[installation.phase],
         recommendedAgent: top.agent,
         score: top.score,
-        reasoning: buildReasoning(ranked, installation),
+        reasoning: buildReasoning(ranked, installation, liveAvailability[top.agent.id]),
         rankedAgents: ranked,
         currentAssignment,
         isReassignment,

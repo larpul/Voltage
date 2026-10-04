@@ -4,7 +4,8 @@ import { Card, Row, Col, Button, Badge, Stack } from 'react-bootstrap'
 import PageDashBreadcrumb from '@/components/Common/PageDashBreadcrumb'
 import TitleHelmet from '@/components/Common/TitleHelmet'
 import { runSmartScheduling, type SchedulingRecommendation } from '@/components/Dashboards/Solar/smartSchedulingEngine'
-import { salesAgents, statusConfig } from '@/components/Dashboards/Solar/salesAgentsData'
+import { useGoogleCalendar } from '@/components/Dashboards/Solar/GoogleCalendarContext'
+import { statusConfig } from '@/components/Dashboards/Solar/salesAgentsData'
 import { phaseConfig } from '@/components/Dashboards/Solar/installationData'
 import { useAgentNotifications } from '@/components/Dashboards/Solar/AgentNotificationContext'
 import LiveAvailabilityPanel from '@/components/Dashboards/Solar/LiveAvailabilityPanel'
@@ -22,9 +23,11 @@ const SmartScheduling = () => {
   const [analyzing, setAnalyzing] = useState(false)
   const [hasRun, setHasRun] = useState(false)
 
+  const { liveAvailability, getSlotSource } = useGoogleCalendar()
+
   const recommendations = useMemo<SchedulingRecommendation[]>(
-    () => (hasRun ? runSmartScheduling() : []),
-    [hasRun],
+    () => (hasRun ? runSmartScheduling(liveAvailability) : []),
+    [hasRun, liveAvailability],
   )
 
   const runAnalysis = useCallback(() => {
@@ -193,6 +196,12 @@ const SmartScheduling = () => {
                           <div className="fs-11" style={{ color: statusConfig[rec.recommendedAgent.status].hex }}>
                             {rec.recommendedAgent.status}
                           </div>
+                          {getSlotSource(rec.recommendedAgent.id) === 'live' && (
+                            <Badge bg="success-subtle" text="success-emphasis" className="fs-11">
+                              <i className="fi fi-brands-google me-1"></i>
+                              Live calendar
+                            </Badge>
+                          )}
                         </div>
                       </div>
                       <div className="text-end">

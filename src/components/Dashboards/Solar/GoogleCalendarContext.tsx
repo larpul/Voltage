@@ -23,6 +23,8 @@ interface GoogleCalendarContextValue {
   configured: boolean
   connections: Record<number, AgentCalendarConnection>
   loadingAgentId: number | null
+  /** agentId → free slots read from that agent's synced calendar (absent = not synced). */
+  liveAvailability: Record<number, number>
   isConnected: (agentId: number) => boolean
   getSlots: (agentId: number, maxSlots?: number) => TimeSlot[]
   getSlotSource: (agentId: number) => SlotSource
@@ -159,11 +161,21 @@ export const GoogleCalendarProvider = ({ children }: { children: ReactNode }) =>
     [connections, liveSlots],
   )
 
+  // Free-slot counts per synced agent, for callers that weigh real availability.
+  const liveAvailability = useMemo(() => {
+    const availability: Record<number, number> = {}
+    Object.entries(liveSlots).forEach(([id, slots]) => {
+      if (connections[Number(id)]) availability[Number(id)] = slots.length
+    })
+    return availability
+  }, [connections, liveSlots])
+
   const value = useMemo(
     () => ({
       configured,
       connections,
       loadingAgentId,
+      liveAvailability,
       isConnected,
       getSlots,
       getSlotSource,
@@ -176,6 +188,7 @@ export const GoogleCalendarProvider = ({ children }: { children: ReactNode }) =>
       configured,
       connections,
       loadingAgentId,
+      liveAvailability,
       isConnected,
       getSlots,
       getSlotSource,

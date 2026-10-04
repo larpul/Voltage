@@ -8,9 +8,12 @@ import { statusConfig } from './salesAgentsData'
 import { phaseConfig } from './installationData'
 
 const SmartSchedulingCard = () => {
-  const recommendations = useMemo(() => runSmartScheduling(), [])
+  const { getSlots, getSlotSource, liveAvailability } = useGoogleCalendar()
+  const recommendations = useMemo(
+    () => runSmartScheduling(liveAvailability),
+    [liveAvailability],
+  )
   const topPicks = recommendations.slice(0, 3)
-  const { getSlots, getSlotSource } = useGoogleCalendar()
 
   const nextSlotLabel = (agentId: number) => {
     const slot = getSlots(agentId, 1)[0]
