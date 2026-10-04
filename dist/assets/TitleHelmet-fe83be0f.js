@@ -1,0 +1,1 @@
+import{j as t}from"./index-bba1f892.js";import{H as r}from"./Helmet-27041cbc.js";const i=({title:e})=>t.jsx(t.Fragment,{children:t.jsx(r,{children:t.jsxs("title",{children:[e," | Volt360"]})})});export{i as T};
