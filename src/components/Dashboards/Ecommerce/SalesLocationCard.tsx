@@ -39,7 +39,7 @@ const SalesLocationCard = () => {
   return (
     <Card>
       <Card.Header className="py-3 pe-3 d-flex justify-content-between align-items-center">
-        <Card.Title>Sales Location</Card.Title>
+        <Card.Title>Installation Locations</Card.Title>
         <Dropdown className="ms-auto" drop="down">
           <Dropdown.Toggle variant="light" className="p-0 btn-icon btn-md arrow-none">
             <i className="fi fi-bs-menu-dots-vertical"></i>

@@ -1,56 +1,48 @@
 import PageDashBreadcrumb from '@/components/Common/PageDashBreadcrumb'
 import {
-  BestSellingCard,
-  EarningBarCard,
-  GrowthBarCard,
-  PerformanceCard,
-  RecentOrderList,
-  SalesHistoryCard,
-  SalesLocationCard,
-  SalesReportChart,
-  StoreOverview,
-  WeeklyStatsCard,
-} from '@/components/Dashboards/Ecommerce'
+  SolarSalesCard,
+  InstallationsCard,
+  AppointmentsCard,
+  SolarSalesChart,
+  SolarAppointmentsCard,
+  WeeklyAppointmentsCard,
+  TopSolarProductsCard,
+} from '@/components/Dashboards/Solar'
+import { SalesLocationCard } from '@/components/Dashboards/Ecommerce'
 import { Col, Row } from 'react-bootstrap'
 
-const Ecommerce = () => {
+const Solar = () => {
   return (
     <>
-      <PageDashBreadcrumb title="eCommerce" subName="Dashboards" />
+      <PageDashBreadcrumb title="Solar Dashboard" subName="Dashboards" />
       <Row className="g-3 g-md-4">
         <Col xl={4}>
-          <PerformanceCard />
+          <SolarSalesCard />
         </Col>
         <Col xl={4} lg={6}>
-          <GrowthBarCard />
+          <InstallationsCard />
         </Col>
         <Col xl={4} lg={6}>
-          <EarningBarCard />
+          <AppointmentsCard />
         </Col>
         <Col xl={8}>
-          <SalesReportChart />
+          <SolarSalesChart />
         </Col>
         <Col xl={4}>
-          <StoreOverview />
+          <WeeklyAppointmentsCard />
         </Col>
         <Col xl={8}>
           <SalesLocationCard />
         </Col>
         <Col xl={4}>
-          <WeeklyStatsCard />
-        </Col>
-        <Col xl={4}>
-          <BestSellingCard />
-        </Col>
-        <Col xl={4}>
-          <SalesHistoryCard />
+          <TopSolarProductsCard />
         </Col>
         <Col xl={12}>
-          <RecentOrderList />
+          <SolarAppointmentsCard />
         </Col>
       </Row>
     </>
   )
 }
 
-export default Ecommerce
+export default Solar
