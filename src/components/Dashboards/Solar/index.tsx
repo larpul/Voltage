@@ -9,6 +9,7 @@ import HouseVisitMapCard from './HouseVisitMapCard'
 import InstallationMapCard from './InstallationMapCard'
 import SalesAgentsMapCard from './SalesAgentsMapCard'
 import SiteVisitCalendarCard from './SiteVisitCalendarCard'
+import SmartSchedulingCard from './SmartSchedulingCard'
 import LogoBanner from './LogoBanner'
 
 export {
@@ -23,5 +24,6 @@ export {
   InstallationMapCard,
   SalesAgentsMapCard,
   SiteVisitCalendarCard,
+  SmartSchedulingCard,
   LogoBanner,
 }
