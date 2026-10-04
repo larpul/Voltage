@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import type { Installation } from './installationData'
+import PowerMetricsOverlay from './PowerMetricsOverlay'
 
 interface Props {
   installation: Installation
@@ -293,6 +294,7 @@ const HouseViewer3D = ({ installation }: Props) => {
           background: 'linear-gradient(180deg, #eaf3fb 0%, #f6f9fc 55%, #eef3ea 100%)',
         }}
       />
+      <PowerMetricsOverlay installation={installation} />
       <div className="position-absolute bottom-0 start-0 m-3 px-2 py-1 rounded-pill bg-dark bg-opacity-75 text-white fs-12">
         Drag to rotate · Scroll to zoom
       </div>
