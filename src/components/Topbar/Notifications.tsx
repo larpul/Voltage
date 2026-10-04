@@ -6,9 +6,11 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 import BgCircleShapeStyle from '../Misc/BgCircleShape'
 import NotificationOffcanvas from './Notifications/NotificationOffcanvas'
 import { notifyData } from './data/notifyData'
+import { useAgentNotifications } from '@/components/Dashboards/Solar/AgentNotificationContext'
 import 'react-perfect-scrollbar/dist/css/styles.css'
 
 const Notifications = () => {
+  const { notifications, unreadCount, markRead } = useAgentNotifications()
   const notify = notifyData || []
   const [isSoundOn, setIsSoundOn] = useState<boolean>(true)
   const [dropDownOpen, setDropDownOpen] = useState<boolean>(false)
@@ -52,7 +54,7 @@ const Notifications = () => {
             bg="primary"
             className="rounded-circle position-absolute translate-middle-y top-30 start-40"
           >
-            5
+            {unreadCount + 5}
           </Badge>
         </Dropdown.Toggle>
         <Dropdown.Menu align="end" className="dropdown-xl py-0 px-0 overflow-hidden">
@@ -63,15 +65,39 @@ const Notifications = () => {
             <div className="bg-primary text-white px-4 py-4" style={BgCircleShapeStyle}>
               <h5 className="fw-bold text-white mb-1">
                 <span>Notifications</span>
-                <span className="badge  bg-body text-dark ms-2 rounded-pill">12+</span>
+                <span className="badge  bg-body text-dark ms-2 rounded-pill">{unreadCount + 5}+</span>
               </h5>
-              <p className="fs-13 mb-0">You have 12+ unread notification</p>
+              <p className="fs-13 mb-0">You have {unreadCount + 5} unread notification{unreadCount + 5 !== 1 ? 's' : ''}</p>
             </div>
           </div>
           <PerfectScrollbar
             style={{ maxHeight: 320 }}
             className="list-group list-group-flush position-relative"
           >
+            {notifications.map((n) => (
+              <Link
+                key={n.id}
+                to={`/installations/${n.installationId}`}
+                onClick={() => { markRead(n.id); setDropDownOpen(false) }}
+                className="list-group-item fw-normal d-flex position-relative"
+              >
+                <div className="avatar avatar-lg rounded flex-shrink-0">
+                  <img src={n.agentAvatar} alt={n.agentName} className="rounded-circle object-fit-cover" width={40} height={40} />
+                </div>
+                <div className="ms-4">
+                  <div className="mb-1">
+                    <span className="fw-semibold text-dark">{n.agentName}</span> assigned to{' '}
+                    <span className="fw-semibold text-primary">{n.customerName}</span>
+                    <br />
+                    <span className="text-muted fs-12">New installation: {n.systemSize} — {n.address}</span>
+                  </div>
+                  <small className="fs-11 fw-normal text-uppercase text-muted">
+                    {!n.read && <Badge bg="success-subtle" text="success" className="me-2">New</Badge>}
+                    {n.timestamp}
+                  </small>
+                </div>
+              </Link>
+            ))}
             {notify.map(({ variant, icon, title, createdAt }, idx) => {
               return (
                 <Link

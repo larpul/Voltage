@@ -28,6 +28,7 @@ export interface Installation {
   phase: Phase
   phone: string
   email: string
+  assignedAgentId: number | null
   contractValue: string
   panelCount: number
   panelModel: string
@@ -54,6 +55,7 @@ export const installations: Installation[] = [
     phase: 'Permit Review',
     phone: '(512) 555-0142',
     email: 'archie.tones@email.com',
+    assignedAgentId: 2,
     contractValue: '$27,200',
     panelCount: 22,
     panelModel: 'SunPower Maxeon 3 (410W)',
@@ -94,6 +96,7 @@ export const installations: Installation[] = [
     phase: 'Completed',
     phone: '(303) 555-0187',
     email: 'holmes.cherry@email.com',
+    assignedAgentId: 1,
     contractValue: '$31,600',
     panelCount: 26,
     panelModel: 'LG NeON R (410W)',
@@ -136,6 +139,7 @@ export const installations: Installation[] = [
     phase: 'Pending Install',
     phone: '(602) 555-0199',
     email: 'malanie.h@email.com',
+    assignedAgentId: 1,
     contractValue: '$19,800',
     panelCount: 16,
     panelModel: 'Q CELLS Q.PEAK DUO (400W)',
@@ -177,6 +181,7 @@ export const installations: Installation[] = [
     phase: 'Site Survey',
     phone: '(503) 555-0110',
     email: 'kenneth.hune@email.com',
+    assignedAgentId: 1,
     contractValue: '$38,500',
     panelCount: 30,
     panelModel: 'REC Alpha Pure (420W)',
@@ -216,6 +221,7 @@ export const installations: Installation[] = [
     phase: 'Pending Install',
     phone: '(305) 555-0177',
     email: 'val.maton@email.com',
+    assignedAgentId: 2,
     contractValue: '$30,100',
     panelCount: 24,
     panelModel: 'SunPower Maxeon 3 (410W)',
@@ -257,6 +263,7 @@ export const installations: Installation[] = [
     phase: 'Completed',
     phone: '(214) 555-0133',
     email: 'selina.kyle@email.com',
+    assignedAgentId: 1,
     contractValue: '$23,400',
     panelCount: 18,
     panelModel: 'Q CELLS Q.PEAK DUO (400W)',
@@ -299,6 +306,7 @@ export const installations: Installation[] = [
     phase: 'Permit Review',
     phone: '(201) 555-0155',
     email: 'b.wayne@email.com',
+    assignedAgentId: 2,
     contractValue: '$48,000',
     panelCount: 36,
     panelModel: 'REC Alpha Pure (420W)',
@@ -339,6 +347,7 @@ export const installations: Installation[] = [
     phase: 'Installation',
     phone: '(202) 555-0166',
     email: 'diana.prince@email.com',
+    assignedAgentId: 2,
     contractValue: '$35,800',
     panelCount: 28,
     panelModel: 'SunPower Maxeon 3 (410W)',

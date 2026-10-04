@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { Card, Row, Col, Badge } from 'react-bootstrap'
 import Avatar from '@/components/UiElements/Base/Avatars/Avatar'
 import { getInstallationById, phaseConfig, PHASE_STEPS } from '@/components/Dashboards/Solar/installationData'
+import AssignAgentDropdown from '@/components/Dashboards/Solar/AssignAgentDropdown'
 
 const InstallationDetail = () => {
   const { id } = useParams<{ id: string }>()
@@ -44,14 +45,17 @@ const InstallationDetail = () => {
                 <Badge bg="light" text="dark">{project.contractValue}</Badge>
               </div>
             </div>
-            <div className="align-self-start align-self-md-center" style={{ minWidth: 200 }}>
-              <div className="d-flex align-items-center justify-content-between mb-1">
-                <span className="fs-12 text-muted">Phase Progress</span>
-                <span className="fs-12 text-muted">{phase.step}/{PHASE_STEPS}</span>
+            <div className="d-flex flex-column gap-3 align-self-start align-self-md-center">
+              <div style={{ minWidth: 200 }}>
+                <div className="d-flex align-items-center justify-content-between mb-1">
+                  <span className="fs-12 text-muted">Phase Progress</span>
+                  <span className="fs-12 text-muted">{phase.step}/{PHASE_STEPS}</span>
+                </div>
+                <div className="progress" style={{ height: '8px' }}>
+                  <div className={`progress-bar bg-${phase.color}`} style={{ width: `${progressPct}%` }} />
+                </div>
               </div>
-              <div className="progress" style={{ height: '8px' }}>
-                <div className={`progress-bar bg-${phase.color}`} style={{ width: `${progressPct}%` }} />
-              </div>
+              <AssignAgentDropdown installation={project} />
             </div>
           </div>
         </Card.Body>
