@@ -7,6 +7,7 @@ import { runSmartScheduling, type SchedulingRecommendation } from '@/components/
 import { salesAgents, statusConfig } from '@/components/Dashboards/Solar/salesAgentsData'
 import { phaseConfig } from '@/components/Dashboards/Solar/installationData'
 import { useAgentNotifications } from '@/components/Dashboards/Solar/AgentNotificationContext'
+import LiveAvailabilityPanel from '@/components/Dashboards/Solar/LiveAvailabilityPanel'
 
 const SCORE_LABELS: { key: string; label: string; weight: number }[] = [
   { key: 'proximity', label: 'Proximity', weight: 0.35 },
@@ -85,6 +86,8 @@ const SmartScheduling = () => {
           </div>
         </Card.Body>
       </Card>
+
+      <LiveAvailabilityPanel />
 
       {analyzing && (
         <Card>

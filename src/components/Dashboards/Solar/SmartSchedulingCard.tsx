@@ -1,13 +1,21 @@
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Stack, Badge, Button } from 'react-bootstrap'
+import { Card, Stack, Badge } from 'react-bootstrap'
 import { runSmartScheduling } from './smartSchedulingEngine'
+import { useGoogleCalendar } from './GoogleCalendarContext'
+import { formatSlotLabel } from './googleCalendar'
 import { statusConfig } from './salesAgentsData'
 import { phaseConfig } from './installationData'
 
 const SmartSchedulingCard = () => {
   const recommendations = useMemo(() => runSmartScheduling(), [])
   const topPicks = recommendations.slice(0, 3)
+  const { getSlots, getSlotSource } = useGoogleCalendar()
+
+  const nextSlotLabel = (agentId: number) => {
+    const slot = getSlots(agentId, 1)[0]
+    return slot ? formatSlotLabel(slot.start) : 'None soon'
+  }
 
   return (
     <Card className="h-100">
@@ -54,6 +62,17 @@ const SmartSchedulingCard = () => {
               <div className="fs-12 text-muted text-truncate">
                 {rec.installation.customer} · {rec.installation.systemSize}
               </div>
+              <div className="fs-11 text-truncate">
+                <i className="fi fi-rr-calendar-clock me-1 text-primary"></i>
+                <span className="text-muted">Next slot </span>
+                <span className="fw-semibold text-dark">
+                  {nextSlotLabel(rec.recommendedAgent.id)}
+                </span>
+                <span className="text-muted">
+                  {' · '}
+                  {getSlotSource(rec.recommendedAgent.id) === 'live' ? 'Live' : 'Demo'}
+                </span>
+              </div>
             </div>
             <Badge
               bg={phaseConfig[rec.installation.phase].color}
@@ -64,16 +83,13 @@ const SmartSchedulingCard = () => {
           </Stack>
         ))}
 
-        <Button
-          as={Link}
+        <Link
           to="/dashboards/smart-scheduling"
-          variant="primary"
-          size="sm"
-          className="mt-auto w-100"
+          className="btn btn-primary btn-sm mt-auto w-100"
         >
           <i className="fi fi-rr-magic-wand me-2"></i>
           Open Smart Scheduling
-        </Button>
+        </Link>
       </Card.Body>
     </Card>
   )

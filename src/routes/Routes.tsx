@@ -2,6 +2,7 @@ import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { AgentNotificationProvider } from '@/components/Dashboards/Solar/AgentNotificationContext'
+import { GoogleCalendarProvider } from '@/components/Dashboards/Solar/GoogleCalendarContext'
 
 // All layouts containers
 import DefaultLayout from '../Layouts/Default'
@@ -20,6 +21,7 @@ const ThemeRoutes = (props: IRoutesProps) => {
   const { isAuthenticated } = useAuthContext()
   return (
     <React.Fragment>
+      <GoogleCalendarProvider>
       <AgentNotificationProvider>
       <Routes>
         <Route>
@@ -54,6 +56,7 @@ const ThemeRoutes = (props: IRoutesProps) => {
         </Route>
       </Routes>
       </AgentNotificationProvider>
+      </GoogleCalendarProvider>
       <Toaster position="top-center" />
     </React.Fragment>
   )
