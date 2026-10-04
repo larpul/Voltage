@@ -188,8 +188,14 @@ export default function useThemeCustomizer() {
       case 'inter':
         updateSettings({ font: ThemeSettings.font.inter })
         break
-      default:
+      case 'public':
         updateSettings({ font: ThemeSettings.font.public })
+        break
+      case 'raleway':
+        updateSettings({ font: ThemeSettings.font.raleway })
+        break
+      default:
+        updateSettings({ font: ThemeSettings.font.raleway })
         break
     }
   }

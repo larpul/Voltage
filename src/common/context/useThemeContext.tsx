@@ -26,7 +26,7 @@ export const ThemeSettings = {
     },
   },
   theme: { light: 'light', dark: 'dark' },
-  font: { public: 'public', inter: 'inter' },
+  font: { public: 'public', inter: 'inter', raleway: 'raleway' },
   header: {
     theme: { light: 'light', dark: 'dark' },
     logo: { hidden: 'fullscreen', show: '' },
@@ -92,7 +92,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
             : ThemeSettings.sidebar.menu.soft,
       },
       theme: params['theme_mode'] === 'dark' ? ThemeSettings.theme.dark : ThemeSettings.theme.light,
-      font: params['theme_font'] === 'inter' ? ThemeSettings.font.inter : ThemeSettings.font.public,
+      font: params['theme_font'] === 'inter'
+        ? ThemeSettings.font.inter
+        : params['theme_font'] === 'raleway'
+          ? ThemeSettings.font.raleway
+          : ThemeSettings.font.raleway,
       customizer: ThemeSettings.customizer.hidden,
     }
   }
