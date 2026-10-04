@@ -1,5 +1,5 @@
 import { Card } from 'react-bootstrap'
-import volt360Logo from '@/assets/images/logos/volt360-logo.png'
+import volt360Logo from '@/assets/images/logos/volt360-logo-light.png'
 
 const LogoBanner = () => {
   return (
