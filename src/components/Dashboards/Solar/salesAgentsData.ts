@@ -85,7 +85,7 @@ export const salesAgents: SalesAgent[] = [
   {
     id: 5,
     name: 'David Park',
-    avatar: 'https://images.unsplash.com/photo-1633332755192-780a367c9a11?w=150&h=150&fit=crop&crop=face',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
     currentLocation: '2450 Riverside Dr, Cincinnati, OH',
     coords: [39.0994, -84.4881],
     status: 'Active',
