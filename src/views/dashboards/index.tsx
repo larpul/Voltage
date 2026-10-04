@@ -6,6 +6,7 @@ import {
   PerformanceCard,
   RecentOrderList,
   SalesHistoryCard,
+  SalesLocationCard,
   SalesReportChart,
   StoreOverview,
   WeeklyStatsCard,
@@ -31,6 +32,9 @@ const Ecommerce = () => {
         </Col>
         <Col xl={4}>
           <StoreOverview />
+        </Col>
+        <Col xl={8}>
+          <SalesLocationCard />
         </Col>
         <Col xl={4}>
           <WeeklyStatsCard />

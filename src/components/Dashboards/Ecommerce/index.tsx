@@ -6,6 +6,7 @@ import RecentOrderList from './RecentOrderList'
 import SalesHistoryCard from './SalesHistoryCard'
 import SalesReportChart from './SalesReportChart'
 import StoreOverview from './StoreOverview'
+import SalesLocationCard from './SalesLocationCard'
 import WeeklyStatsCard from './WeeklyStatsCard'
 
 export {
@@ -18,4 +19,5 @@ export {
   SalesReportChart,
   StoreOverview,
   WeeklyStatsCard,
+  SalesLocationCard,
 }
