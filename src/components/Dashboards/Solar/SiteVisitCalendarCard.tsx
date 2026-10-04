@@ -1,13 +1,24 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import { Card, Stack } from 'react-bootstrap'
+import { Card, Stack, Badge } from 'react-bootstrap'
 import { getSiteVisitEvents, categoryConfig, type EventCategory } from './siteVisitEvents'
 
 const SiteVisitCalendarCard = () => {
   const navigate = useNavigate()
+  const [phaseFilter, setPhaseFilter] = useState<string>('all')
   const events = useMemo(() => getSiteVisitEvents(), [])
+
+  const phases = useMemo(() => {
+    const unique = Array.from(new Set(events.map((e) => e.phase)))
+    return unique.sort()
+  }, [events])
+
+  const visibleEvents = useMemo(() => {
+    if (phaseFilter === 'all') return events
+    return events.filter((e) => e.phase === phaseFilter)
+  }, [events, phaseFilter])
 
   const handleEventClick = (info: any) => {
     const installationId = info.event.extendedProps.installationId
@@ -36,6 +47,30 @@ const SiteVisitCalendarCard = () => {
         </Stack>
       </Card.Header>
       <Card.Body className="pt-2">
+        <Stack direction="horizontal" gap={2} className="flex-wrap mb-2">
+          <Badge
+            bg={phaseFilter === 'all' ? 'primary' : 'light'}
+            text={phaseFilter === 'all' ? 'white' : 'dark'}
+            style={{ cursor: 'pointer' }}
+            onClick={() => setPhaseFilter('all')}
+          >
+            All ({events.length})
+          </Badge>
+          {phases.map((phase) => {
+            const count = events.filter((e) => e.phase === phase).length
+            return (
+              <Badge
+                key={phase}
+                bg={phaseFilter === phase ? 'primary' : 'light'}
+                text={phaseFilter === phase ? 'white' : 'dark'}
+                style={{ cursor: 'pointer' }}
+                onClick={() => setPhaseFilter(phase)}
+              >
+                {phase} ({count})
+              </Badge>
+            )
+          })}
+        </Stack>
         <Stack direction="horizontal" gap={2} className="flex-wrap mb-3">
           {legendCategories.map((cat) => {
             const config = categoryConfig[cat]
@@ -51,7 +86,7 @@ const SiteVisitCalendarCard = () => {
           })}
         </Stack>
         <FullCalendar
-          events={events.map((e) => ({
+          events={visibleEvents.map((e) => ({
             id: e.id,
             title: e.title,
             start: e.start,
