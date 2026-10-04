@@ -24,12 +24,12 @@ const MapBase = ({ width, height, options, type, onMarkerClick }: MapBaseProps) 
 
       if (onMarkerClick) {
         const container = document.getElementById(selectorId)
-        container?.querySelectorAll('circle.jvm-marker').forEach((circle) => {
-          circle.style.cursor = 'pointer'
-          circle.addEventListener('click', () => {
-            const index = parseInt(circle.getAttribute('data-index') || '-1', 10)
+        container?.addEventListener('click', (e: any) => {
+          const marker = (e.target as Element)?.closest('circle.jvm-marker')
+          if (marker) {
+            const index = parseInt(marker.getAttribute('data-index') || '-1', 10)
             if (index >= 0) onMarkerClick(index)
-          })
+          }
         })
       }
 
