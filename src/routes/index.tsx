@@ -9,6 +9,7 @@ const Ecommerce = React.lazy(() => import('./../views/dashboards'))
 const Analytics = React.lazy(() => import('./../views/dashboards/Analytics'))
 const CRM = React.lazy(() => import('./../views/dashboards/CRM'))
 const InstallationDetail = React.lazy(() => import('./../views/dashboards/InstallationDetail'))
+const SiteVisitCalendar = React.lazy(() => import('./../views/dashboards/SiteVisitCalendar'))
 
 // Apps
 const Chat = React.lazy(() => import('./../views/apps/Chat'))
@@ -232,6 +233,12 @@ const dashboardRoutes: RoutesProps = {
       path: '/installations/:id',
       name: 'Installation Detail',
       element: <InstallationDetail />,
+      route: PrivateRoute,
+    },
+    {
+      path: '/dashboards/site-visits',
+      name: 'Site Visit Calendar',
+      element: <SiteVisitCalendar />,
       route: PrivateRoute,
     },
   ],

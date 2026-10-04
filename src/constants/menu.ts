@@ -438,6 +438,13 @@ const MENU_ITEMS: MenuItemTypes[] = [
     icon: 'fi fi-rr-calendar',
     parentKey: 'apps',
   },
+  {
+    key: 'site-visit-calendar',
+    label: 'Site Visits',
+    url: '/dashboards/site-visits',
+    icon: 'fi fi-rr-calendar-check',
+    parentKey: 'apps',
+  },
   // Pages
   {
     key: 'pages',
@@ -956,6 +963,12 @@ const HORIZONTAL_MENU_ITEMS: MenuItemTypes[] = [
         key: 'crm',
         label: 'CRM',
         url: '/dashboards/crm',
+        parentKey: 'dashboard',
+      },
+      {
+        key: 'site-visit-calendar',
+        label: 'Site Visits',
+        url: '/dashboards/site-visits',
         parentKey: 'dashboard',
       },
       // {
