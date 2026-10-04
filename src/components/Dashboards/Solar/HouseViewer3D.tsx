@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import type { Installation } from './installationData'
+import PowerMetricsOverlay from './PowerMetricsOverlay'
 
 interface Props {
   installation: Installation
@@ -293,26 +294,7 @@ const HouseViewer3D = ({ installation }: Props) => {
           background: 'linear-gradient(180deg, #eaf3fb 0%, #f6f9fc 55%, #eef3ea 100%)',
         }}
       />
-      {/* Power production metrics overlay */}
-      <div className="position-absolute top-0 start-0 m-3 px-3 py-2 rounded bg-dark bg-opacity-75 text-white">
-        <div className="fs-11 text-uppercase text-white-50 fw-semibold mb-2">Power Production</div>
-        <div className="d-flex gap-3">
-          <div>
-            <div className="fs-14 fw-bold lh-1">{installation.systemSize}</div>
-            <div className="fs-11 text-white-50 mt-1">System Size</div>
-          </div>
-          <div className="border-start border-white border-opacity-25" />
-          <div>
-            <div className="fs-14 fw-bold lh-1">{installation.estimatedAnnualOutput}</div>
-            <div className="fs-11 text-white-50 mt-1">Est. Annual Output</div>
-          </div>
-          <div className="border-start border-white border-opacity-25" />
-          <div>
-            <div className="fs-14 fw-bold lh-1">{installation.panelCount}</div>
-            <div className="fs-11 text-white-50 mt-1">Panels</div>
-          </div>
-        </div>
-      </div>
+      <PowerMetricsOverlay installation={installation} />
       <div className="position-absolute bottom-0 start-0 m-3 px-2 py-1 rounded-pill bg-dark bg-opacity-75 text-white fs-12">
         Drag to rotate · Scroll to zoom
       </div>
