@@ -7,6 +7,7 @@ import WeeklyAppointmentsCard from './WeeklyAppointmentsCard'
 import TopSolarProductsCard from './TopSolarProductsCard'
 import ProjectPhasesCard from './ProjectPhasesCard'
 import CincinnatiMapCard from './CincinnatiMapCard'
+import HouseVisitMapCard from './HouseVisitMapCard'
 
 export {
   SolarSalesCard,
@@ -18,4 +19,5 @@ export {
   TopSolarProductsCard,
   ProjectPhasesCard,
   CincinnatiMapCard,
+  HouseVisitMapCard,
 }
