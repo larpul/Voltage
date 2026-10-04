@@ -2,5 +2,11 @@
   "previewPort": 3000,
   "healthPath": "/",
   "startCommand": "docker compose -f docker-compose.base44.yml up -d",
-  "secrets": []
+  "secrets": [
+    {
+      "name": "VITE_GOOGLE_CLIENT_ID",
+      "description": "Google OAuth 2.0 Client ID for Calendar API access. Create one at https://console.cloud.google.com/apis/credentials (enable Calendar API, create an OAuth 2.0 Client ID of type Web Application, add the preview origin to Authorized JavaScript origins).",
+      "requiredAtBoot": false
+    }
+  ]
 }

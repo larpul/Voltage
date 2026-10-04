@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Dropdown, DropdownDivider } from 'react-bootstrap'
+import { Card, Dropdown, DropdownDivider, Button } from 'react-bootstrap'
 import Avatar from '@/components/UiElements/Base/Avatars/Avatar'
+import { syncAppointmentsToGoogleCalendar, isGoogleCalendarConfigured, CalendarAppointment } from '@/services/googleCalendar'
 
 import avatar1 from '@/assets/images/avatars/1.png'
 import avatar2 from '@/assets/images/avatars/2.png'
