@@ -7,6 +7,7 @@ import {
   SolarAppointmentsCard,
   WeeklyAppointmentsCard,
   TopSolarProductsCard,
+  ProjectPhasesCard,
 } from '@/components/Dashboards/Solar'
 import { SalesLocationCard } from '@/components/Dashboards/Ecommerce'
 import { Col, Row } from 'react-bootstrap'
@@ -36,6 +37,9 @@ const Solar = () => {
         </Col>
         <Col xl={4}>
           <TopSolarProductsCard />
+        </Col>
+        <Col xl={12}>
+          <ProjectPhasesCard />
         </Col>
         <Col xl={12}>
           <SolarAppointmentsCard />
