@@ -125,9 +125,6 @@ const Header = ({ toggleMenu, navOpen }: HeaderProps) => {
             </span>
             <Notifications />
             <Profile />
-            <div className="header-btn pe-md-0 d-lg-none" onClick={handleMegaMenuClick}>
-              <i className="fi fi-rr-menu-burger"></i>
-            </div>
           </div>
         </div>
       </header>
