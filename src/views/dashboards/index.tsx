@@ -10,6 +10,7 @@ import {
   ProjectPhasesCard,
   CincinnatiMapCard,
   HouseVisitMapCard,
+  LogoBanner,
 } from '@/components/Dashboards/Solar'
 import { SalesLocationCard } from '@/components/Dashboards/Ecommerce'
 import { Col, Row } from 'react-bootstrap'
@@ -18,6 +19,7 @@ const Solar = () => {
   return (
     <>
       <PageDashBreadcrumb title="Solar Dashboard" subName="Dashboards" />
+      <LogoBanner />
       <Row className="g-3 g-md-4">
         <Col xl={4}>
           <SolarSalesCard />

@@ -45,8 +45,11 @@ const houses: HouseVisit[] = [
 
 const HouseVisitMapCard = () => {
   const [activeStatus, setActiveStatus] = useState<VisitStatus | 'All'>('All')
+  const [searchQuery, setSearchQuery] = useState('')
 
-  const visibleHouses = activeStatus === 'All' ? houses : houses.filter((h) => h.status === activeStatus)
+  const visibleHouses = houses
+    .filter((h) => activeStatus === 'All' || h.status === activeStatus)
+    .filter((h) => h.address.toLowerCase().includes(searchQuery.toLowerCase()))
 
   const markers = visibleHouses.map((h) => ({
     name: h.address,
@@ -79,7 +82,18 @@ const HouseVisitMapCard = () => {
   return (
     <Card>
       <Card.Header className="py-3 pe-3 d-flex justify-content-between align-items-center">
-        <Card.Title>House Visit Map</Card.Title>
+        <Card.Title as="h5" className="mb-0">House Visit Map</Card.Title>
+        <div className="position-relative ms-3 flex-grow-1" style={{ maxWidth: 260 }}>
+          <i className="fi fi-rr-search position-absolute top-50 translate-middle-y" style={{ left: 10, fontSize: 13, color: '#9aa3b2' }}></i>
+          <input
+            type="text"
+            className="form-control form-control-sm ps-4"
+            placeholder="Search address..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{ paddingLeft: 30 }}
+          />
+        </div>
         <Dropdown className="ms-auto" drop="down">
           <Dropdown.Toggle variant="light" className="p-0 btn-icon btn-md arrow-none">
             <i className="fi fi-bs-menu-dots-vertical"></i>
