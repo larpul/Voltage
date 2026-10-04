@@ -61,6 +61,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   const getDefaultSettings = () => {
     return {
+      version: 3,
       color: ThemeSettings.color.primary,
       layout: {
         type:
@@ -94,16 +95,28 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       theme: params['theme_mode'] === 'dark' ? ThemeSettings.theme.dark : ThemeSettings.theme.light,
       font: params['theme_font'] === 'inter'
         ? ThemeSettings.font.inter
-        : params['theme_font'] === 'uber'
-          ? ThemeSettings.font.uber
-          : ThemeSettings.font.raleway,
+        : params['theme_font'] === 'raleway'
+          ? ThemeSettings.font.raleway
+          : ThemeSettings.font.uber,
       customizer: ThemeSettings.customizer.hidden,
     }
   }
 
   const [settings, setSettings] = useState(() => {
     const savedSettings = localStorage.getItem('themeSettings')
-    return savedSettings ? JSON.parse(savedSettings) : getDefaultSettings()
+    if (savedSettings) {
+      const parsed = JSON.parse(savedSettings)
+      // Re-apply the framework defaults (orange primary + Uber Move font) for settings saved before the theme change.
+      if (parsed.version !== 3)
+        return {
+          ...parsed,
+          version: 3,
+          font: getDefaultSettings().font,
+          color: getDefaultSettings().color,
+        }
+      return parsed
+    }
+    return getDefaultSettings()
   })
 
   useEffect(() => {
