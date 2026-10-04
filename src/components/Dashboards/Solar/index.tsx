@@ -6,6 +6,7 @@ import SolarAppointmentsCard from './SolarAppointmentsCard'
 import WeeklyAppointmentsCard from './WeeklyAppointmentsCard'
 import TopSolarProductsCard from './TopSolarProductsCard'
 import ProjectPhasesCard from './ProjectPhasesCard'
+import CincinnatiMapCard from './CincinnatiMapCard'
 
 export {
   SolarSalesCard,
@@ -16,4 +17,5 @@ export {
   WeeklyAppointmentsCard,
   TopSolarProductsCard,
   ProjectPhasesCard,
+  CincinnatiMapCard,
 }

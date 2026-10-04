@@ -5,7 +5,7 @@ import 'jsvectormap/dist/js/jsvectormap.min.js'
 import 'jsvectormap/dist/maps/us-mill-en.js'
 import 'jsvectormap/dist/css/jsvectormap.min.css'
 
-const SalesLocationCard = () => {
+const CincinnatiMapCard = () => {
   const mapOpts = {
     normalizeFunction: 'polynomial',
     zoomButtons: false,
@@ -14,13 +14,13 @@ const SalesLocationCard = () => {
     hoverColor: false,
     backgroundColor: 'transparent',
     markers: [
-      { name: 'Austin, TX', coords: [30.27, -97.74], style: { fill: '#d13b4c' } },
-      { name: 'Denver, CO', coords: [39.74, -104.99], style: { fill: '#3dc7be' } },
-      { name: 'Phoenix, AZ', coords: [33.45, -112.07], style: { fill: '#fd7e14' } },
-      { name: 'Portland, OR', coords: [45.52, -122.68], style: { fill: '#25b865' } },
-      { name: 'Miami, FL', coords: [25.76, -80.19], style: { fill: '#963258' } },
-      { name: 'Columbus, OH', coords: [39.96, -83.0], style: { fill: '#6366f1' } },
-      { name: 'Cincinnati, OH', coords: [39.1, -84.51], style: { fill: '#f59e0b' } },
+      { name: 'Hyde Park', coords: [39.14, -84.44], style: { fill: '#f59e0b' } },
+      { name: 'Over-the-Rhine', coords: [39.11, -84.51], style: { fill: '#d13b4c' } },
+      { name: 'West Chester', coords: [39.32, -84.32], style: { fill: '#3dc7be' } },
+      { name: 'Madeira', coords: [39.19, -84.38], style: { fill: '#6366f1' } },
+      { name: 'Covington, KY', coords: [39.08, -84.51], style: { fill: '#25b865' } },
+      { name: 'Clifton', coords: [39.14, -84.52], style: { fill: '#fd7e14' } },
+      { name: 'Mount Adams', coords: [39.11, -84.49], style: { fill: '#963258' } },
     ],
     markerStyle: {
       initial: { fill: '#ff525d', stroke: '#FFF', strokeWidth: 1.5, r: 5 },
@@ -39,18 +39,18 @@ const SalesLocationCard = () => {
     },
   }
 
-  const states = [
-    { name: 'Texas', color: 'danger', count: '64 houses' },
-    { name: 'Ohio', color: 'warning', count: '48 houses' },
-    { name: 'Colorado', color: 'success', count: '36 houses' },
-    { name: 'Arizona', color: 'primary', count: '32 houses' },
-    { name: 'Oregon', color: 'dark', count: '24 houses' },
+  const neighborhoods = [
+    { name: 'Hyde Park', color: 'warning', count: '18 houses' },
+    { name: 'West Chester', color: 'success', count: '14 houses' },
+    { name: 'Over-the-Rhine', color: 'danger', count: '12 houses' },
+    { name: 'Madeira', color: 'primary', count: '8 houses' },
+    { name: 'Clifton', color: 'dark', count: '6 houses' },
   ]
 
   return (
     <Card>
       <Card.Header className="py-3 pe-3 d-flex justify-content-between align-items-center">
-        <Card.Title>Installation Houses</Card.Title>
+        <Card.Title>Cincinnati Installations</Card.Title>
         <Dropdown className="ms-auto" drop="down">
           <Dropdown.Toggle variant="light" className="p-0 btn-icon btn-md arrow-none">
             <i className="fi fi-bs-menu-dots-vertical"></i>
@@ -76,12 +76,12 @@ const SalesLocationCard = () => {
         <MapBase type="us_mill_en" width="100%" height="300px" options={mapOpts} />
         <Stack direction="horizontal" gap={4}>
           <div className="mt-4">
-            <span className="fs-20 fw-bold text-dark">204 houses</span>
+            <span className="fs-20 fw-bold text-dark">58 houses</span>
             <span className="badge bg-success-subtle text-success rounded-pill d-inline-flex align-items-center ms-2">
               <i className="fi fi-rr-arrow-trend-up fs-11"></i>
-              <span>12.68%</span>
+              <span>8.4%</span>
             </span>
-            <span className="fs-13 text-muted mt-1 d-block">Active solar installations across the US.</span>
+            <span className="fs-13 text-muted mt-1 d-block">Solar installations in the Cincinnati area.</span>
           </div>
           <Link to="" className="ms-auto icon-link icon-link-hover link-primary">
             <span>Explore</span>
@@ -90,7 +90,7 @@ const SalesLocationCard = () => {
         </Stack>
       </Card.Body>
       <ListGroup>
-        {states.map(({ name, color, count }, index) => (
+        {neighborhoods.map(({ name, color, count }, index) => (
           <ListGroup.Item key={index} className="hstack py-2">
             <div className="me-auto">
               <Link to="" className="hstack gap-3">
@@ -109,4 +109,4 @@ const SalesLocationCard = () => {
   )
 }
 
-export default SalesLocationCard
+export default CincinnatiMapCard

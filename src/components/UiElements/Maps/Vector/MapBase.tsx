@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+let mapInstanceId = 0
+
 interface MapBaseProps {
   width?: string
   height?: string
@@ -8,7 +10,7 @@ interface MapBaseProps {
 }
 
 const MapBase = ({ width, height, options, type }: MapBaseProps) => {
-  const selectorId = type + new Date().getTime()
+  const [selectorId] = useState(() => `map-${type}-${++mapInstanceId}`)
   const [map, setMap] = useState()
 
   useEffect(() => {
