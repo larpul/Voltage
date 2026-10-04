@@ -1,0 +1,16 @@
+/* Uber Move Font */
+@font-face {
+  font-family: 'UberMove';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('@/assets/fonts/UberMove/UberMoveMedium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'UberMove';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('@/assets/fonts/UberMove/UberMoveBold.otf') format('opentype');
+}

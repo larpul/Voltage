@@ -194,6 +194,9 @@ export default function useThemeCustomizer() {
       case 'raleway':
         updateSettings({ font: ThemeSettings.font.raleway })
         break
+      case 'uber':
+        updateSettings({ font: ThemeSettings.font.uber })
+        break
       default:
         updateSettings({ font: ThemeSettings.font.raleway })
         break
