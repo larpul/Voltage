@@ -185,7 +185,10 @@ const SalesAgentsMapCard = () => {
                 </div>
               </div>
             </Modal.Body>
-            <Modal.Footer>
+            <Modal.Footer className="gap-2">
+              <a href={`tel:${selectedAgent.phone.replace(/[^0-9+]/g, '')}`} className="btn btn-success btn-sm">
+                <i className="fi fi-rr-phone-call me-1"></i>Call
+              </a>
               <Button variant="light" size="sm" onClick={() => setSelectedAgent(null)}>Close</Button>
             </Modal.Footer>
           </>
