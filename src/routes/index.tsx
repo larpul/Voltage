@@ -166,6 +166,9 @@ const ForgotPasswordModern = React.lazy(() => import('../views/auth/modern/Forgo
 const TwoFactorOTPModern = React.lazy(() => import('../views/auth/modern/TwoFactorOTPModern'))
 const LockScreenModern = React.lazy(() => import('../views/auth/modern/LockScreenModern'))
 
+// Test
+const TestPage = React.lazy(() => import('../views/TestPage'))
+
 // Error
 const NotFound = React.lazy(() => import('../views/error/NotFound'))
 const ServerError = React.lazy(() => import('../views/error/ServerError'))
@@ -1001,6 +1004,16 @@ const authRoutes: RoutesProps[] = [
   },
 ]
 
+// Test
+const testRoutes: RoutesProps[] = [
+  {
+    path: '/test',
+    name: 'Test Page',
+    element: <TestPage />,
+    route: Route,
+  },
+]
+
 // Error
 const errorRoutes: RoutesProps[] = [
   {
@@ -1107,7 +1120,7 @@ const flattenRoutes = (routes: RoutesProps[]) => {
 
 // All routes
 const authProtectedRoutes = [dashboardRoutes, appsRoutes, pagesRoutes, componentsRoutes]
-const publicRoutes = [...authRoutes, ...errorRoutes, ...emailRoutes, ...docsRoutes]
+const publicRoutes = [...authRoutes, ...testRoutes, ...errorRoutes, ...emailRoutes, ...docsRoutes]
 
 const authProtectedFlattenRoutes = flattenRoutes([...authProtectedRoutes])
 const publicProtectedFlattenRoutes = flattenRoutes([...publicRoutes])
