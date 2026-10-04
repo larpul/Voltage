@@ -11,6 +11,7 @@ import {
   CincinnatiMapCard,
   HouseVisitMapCard,
   InstallationMapCard,
+  SalesAgentsMapCard,
   SiteVisitCalendarCard,
 } from '@/components/Dashboards/Solar'
 import { SalesLocationCard } from '@/components/Dashboards/Ecommerce'
@@ -50,6 +51,9 @@ const Solar = () => {
         </Col>
         <Col xl={12}>
           <InstallationMapCard />
+        </Col>
+        <Col xl={12}>
+          <SalesAgentsMapCard />
         </Col>
         <Col xl={12}>
           <HouseVisitMapCard />

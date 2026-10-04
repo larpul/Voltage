@@ -9,6 +9,7 @@ import ProjectPhasesCard from './ProjectPhasesCard'
 import CincinnatiMapCard from './CincinnatiMapCard'
 import HouseVisitMapCard from './HouseVisitMapCard'
 import InstallationMapCard from './InstallationMapCard'
+import SalesAgentsMapCard from './SalesAgentsMapCard'
 import SiteVisitCalendarCard from './SiteVisitCalendarCard'
 import LogoBanner from './LogoBanner'
 
@@ -24,6 +25,7 @@ export {
   CincinnatiMapCard,
   HouseVisitMapCard,
   InstallationMapCard,
+  SalesAgentsMapCard,
   SiteVisitCalendarCard,
   LogoBanner,
 }
