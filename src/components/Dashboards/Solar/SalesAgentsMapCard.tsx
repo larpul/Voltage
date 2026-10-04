@@ -183,11 +183,18 @@ const SalesAgentsMapCard = () => {
                   <span className="fs-13 text-muted">Phone</span>
                   <span className="fs-13 fw-semibold">{selectedAgent.phone}</span>
                 </div>
+                <div className="d-flex justify-content-between">
+                  <span className="fs-13 text-muted">Email</span>
+                  <span className="fs-13 fw-semibold text-truncate" style={{ maxWidth: 180 }}>{selectedAgent.email}</span>
+                </div>
               </div>
             </Modal.Body>
             <Modal.Footer className="gap-2">
               <a href={`tel:${selectedAgent.phone.replace(/[^0-9+]/g, '')}`} className="btn btn-success btn-sm">
                 <i className="fi fi-rr-phone-call me-1"></i>Call
+              </a>
+              <a href={`mailto:${selectedAgent.email}`} className="btn btn-primary btn-sm">
+                <i className="fi fi-rr-envelope me-1"></i>Email
               </a>
               <Button variant="light" size="sm" onClick={() => setSelectedAgent(null)}>Close</Button>
             </Modal.Footer>

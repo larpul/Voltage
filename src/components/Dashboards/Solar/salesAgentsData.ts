@@ -17,6 +17,7 @@ export interface SalesAgent {
   lastUpdated: string
   assignedInstallations: number
   phone: string
+  email: string
 }
 
 export const salesAgents: SalesAgent[] = [
@@ -30,6 +31,7 @@ export const salesAgents: SalesAgent[] = [
     lastUpdated: '2 min ago',
     assignedInstallations: 4,
     phone: '(503) 555-0101',
+    email: 'mike.reynolds@volt360.com',
   },
   {
     id: 2,
@@ -41,6 +43,7 @@ export const salesAgents: SalesAgent[] = [
     lastUpdated: '5 min ago',
     assignedInstallations: 3,
     phone: '(512) 555-0102',
+    email: 'sarah.chen@volt360.com',
   },
   {
     id: 3,
@@ -52,6 +55,7 @@ export const salesAgents: SalesAgent[] = [
     lastUpdated: '12 min ago',
     assignedInstallations: 2,
     phone: '(303) 555-0103',
+    email: 'james.carter@volt360.com',
   },
   {
     id: 4,
@@ -63,6 +67,7 @@ export const salesAgents: SalesAgent[] = [
     lastUpdated: '1 min ago',
     assignedInstallations: 3,
     phone: '(305) 555-0104',
+    email: 'lisa.torres@volt360.com',
   },
   {
     id: 5,
@@ -74,6 +79,7 @@ export const salesAgents: SalesAgent[] = [
     lastUpdated: '8 min ago',
     assignedInstallations: 2,
     phone: '(602) 555-0105',
+    email: 'david.park@volt360.com',
   },
   {
     id: 6,
@@ -85,6 +91,7 @@ export const salesAgents: SalesAgent[] = [
     lastUpdated: '2 hr ago',
     assignedInstallations: 0,
     phone: '(214) 555-0106',
+    email: 'emily.stone@volt360.com',
   },
 ]
 
