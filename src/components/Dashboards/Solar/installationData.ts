@@ -28,6 +28,7 @@ export interface Installation {
   phase: Phase
   phone: string
   email: string
+  assignedAgentId: number | null
   contractValue: string
   panelCount: number
   panelModel: string
@@ -48,12 +49,13 @@ export const installations: Installation[] = [
     id: 1,
     customer: 'Archie Tones',
     avatar: avatar1,
-    address: '128 Maple St, Austin TX',
-    coords: [30.27, -97.74],
+    address: '128 Maple St, Cincinnati OH',
+    coords: [39.10, -84.51],
     systemSize: '8.5 kW',
     phase: 'Permit Review',
-    phone: '(512) 555-0142',
+    phone: '(513) 555-0142',
     email: 'archie.tones@email.com',
+    assignedAgentId: 2,
     contractValue: '$27,200',
     panelCount: 22,
     panelModel: 'SunPower Maxeon 3 (410W)',
@@ -65,12 +67,12 @@ export const installations: Installation[] = [
     warrantyYears: 25,
     installDate: 'TBD',
     customerNotes:
-      'Customer is concerned about HOA approval timelines. Prefers all communication via email. Has a large oak tree on the south side that may cause shading in winter months — recommended tree trimming before installation.',
+      'Customer is concerned about HOA approval timelines. Prefers all communication via email. Has a large oak tree on the south side that may cause shading in winter months — recommended tree trimming before installation. Served by Duke Energy Ohio.',
     history: [
       { date: '2026-09-12', event: 'Site survey completed — roof structure confirmed suitable', user: 'Mike Reynolds' },
       { date: '2026-09-18', event: 'System design finalized and sent to customer for approval', user: 'Sarah Chen' },
-      { date: '2026-09-25', event: 'Customer approved design; permit application submitted to Austin Energy', user: 'Sarah Chen' },
-      { date: '2026-10-01', event: 'Permit review in progress with city of Austin', user: 'System' },
+      { date: '2026-09-25', event: 'Customer approved design; permit application submitted to Duke Energy', user: 'Sarah Chen' },
+      { date: '2026-10-01', event: 'Permit review in progress with city of Cincinnati', user: 'System' },
     ],
     techSpecs: [
       { label: 'DC System Size', value: '8.5 kW' },
@@ -88,12 +90,13 @@ export const installations: Installation[] = [
     id: 2,
     customer: 'Holmes Cherry',
     avatar: avatar2,
-    address: '45 Oak Ave, Denver CO',
-    coords: [39.74, -104.99],
+    address: '45 Oak Ave, Covington KY',
+    coords: [39.08, -84.51],
     systemSize: '10.2 kW',
     phase: 'Completed',
-    phone: '(303) 555-0187',
+    phone: '(513) 555-0187',
     email: 'holmes.cherry@email.com',
+    assignedAgentId: 1,
     contractValue: '$31,600',
     panelCount: 26,
     panelModel: 'LG NeON R (410W)',
@@ -105,14 +108,14 @@ export const installations: Installation[] = [
     warrantyYears: 25,
     installDate: '2026-08-14',
     customerNotes:
-      'Installation completed ahead of schedule. Customer very happy with the process. Enrolled in Xcel Energy net metering. Monitoring app set up and customer trained on usage tracking.',
+      'Installation completed ahead of schedule. Customer very happy with the process. Enrolled in Duke Energy Kentucky net metering. Monitoring app set up and customer trained on usage tracking.',
     history: [
       { date: '2026-06-03', event: 'Initial consultation and site survey', user: 'Mike Reynolds' },
-      { date: '2026-06-15', event: 'Permit approved by Denver County', user: 'Sarah Chen' },
+      { date: '2026-06-15', event: 'Permit approved by Kenton County', user: 'Sarah Chen' },
       { date: '2026-07-20', event: 'Materials delivered to site', user: 'System' },
       { date: '2026-08-12', event: 'Installation crew dispatched (2-day install)', user: 'Dispatch' },
       { date: '2026-08-14', event: 'Installation completed and inspected', user: 'Mike Reynolds' },
-      { date: '2026-08-20', event: 'PTO (Permission to Operate) granted by Xcel Energy', user: 'Utility' },
+      { date: '2026-08-20', event: 'PTO (Permission to Operate) granted by Duke Energy', user: 'Utility' },
     ],
     techSpecs: [
       { label: 'DC System Size', value: '10.2 kW' },
@@ -130,12 +133,13 @@ export const installations: Installation[] = [
     id: 3,
     customer: 'Malanie Hanvey',
     avatar: avatar3,
-    address: '72 Pine Rd, Phoenix AZ',
-    coords: [33.45, -112.07],
+    address: '72 Pine Rd, Dayton OH',
+    coords: [39.76, -84.19],
     systemSize: '6.0 kW',
     phase: 'Pending Install',
-    phone: '(602) 555-0199',
+    phone: '(513) 555-0199',
     email: 'malanie.h@email.com',
+    assignedAgentId: 1,
     contractValue: '$19,800',
     panelCount: 16,
     panelModel: 'Q CELLS Q.PEAK DUO (400W)',
@@ -147,11 +151,11 @@ export const installations: Installation[] = [
     warrantyYears: 25,
     installDate: 'TBD (scheduled for Oct 15)',
     customerNotes:
-      'Flat roof installation requires ballasted racking system. Customer wants battery backup for monsoon season power outages. APS requires specific interconnection documentation — paperwork in progress.',
+      'Flat roof installation requires ballasted racking system. Customer wants battery backup for severe storm power outages. AES Ohio requires specific interconnection documentation — paperwork in progress.',
     history: [
       { date: '2026-08-05', event: 'Site survey completed — flat roof confirmed', user: 'Mike Reynolds' },
       { date: '2026-08-22', event: 'Design approved by customer', user: 'Sarah Chen' },
-      { date: '2026-09-03', event: 'Permit approved by City of Phoenix', user: 'Sarah Chen' },
+      { date: '2026-09-03', event: 'Permit approved by City of Dayton', user: 'Sarah Chen' },
       { date: '2026-09-28', event: 'Materials ordered and scheduled for delivery', user: 'System' },
       { date: '2026-10-02', event: 'Install date confirmed for Oct 15', user: 'Dispatch' },
     ],
@@ -171,12 +175,13 @@ export const installations: Installation[] = [
     id: 4,
     customer: 'Kenneth Hune',
     avatar: avatar4,
-    address: '15 Birch Ln, Portland OR',
-    coords: [45.52, -122.68],
+    address: '15 Birch Ln, Columbus OH',
+    coords: [39.96, -83.0],
     systemSize: '12.4 kW',
     phase: 'Site Survey',
-    phone: '(503) 555-0110',
+    phone: '(513) 555-0110',
     email: 'kenneth.hune@email.com',
+    assignedAgentId: 1,
     contractValue: '$38,500',
     panelCount: 30,
     panelModel: 'REC Alpha Pure (420W)',
@@ -210,12 +215,13 @@ export const installations: Installation[] = [
     id: 5,
     customer: 'Valentine Maton',
     avatar: avatar5,
-    address: '301 Cedar Dr, Miami FL',
-    coords: [25.76, -80.19],
+    address: '301 Cedar Dr, Lexington KY',
+    coords: [38.04, -84.50],
     systemSize: '9.8 kW',
     phase: 'Pending Install',
-    phone: '(305) 555-0177',
+    phone: '(513) 555-0177',
     email: 'val.maton@email.com',
+    assignedAgentId: 2,
     contractValue: '$30,100',
     panelCount: 24,
     panelModel: 'SunPower Maxeon 3 (410W)',
@@ -227,11 +233,11 @@ export const installations: Installation[] = [
     warrantyYears: 25,
     installDate: 'TBD (scheduled for Oct 22)',
     customerNotes:
-      'Hurricane zone — system designed with enhanced wind load ratings (170 mph). Customer requires battery backup for hurricane preparedness. FPL interconnection application submitted. Customer has a pool pump that runs during the day — expects significant offset.',
+      'Storm-prone area — system designed with enhanced wind load ratings (170 mph). Customer requires battery backup for severe weather preparedness. Kentucky Utilities interconnection application submitted. Customer has a pool pump that runs during the day — expects significant offset.',
     history: [
       { date: '2026-08-10', event: 'Site survey completed', user: 'Mike Reynolds' },
       { date: '2026-08-28', event: 'Design finalized with hurricane-rated mounting', user: 'Sarah Chen' },
-      { date: '2026-09-15', event: 'Permit approved by Miami-Dade County', user: 'Sarah Chen' },
+      { date: '2026-09-15', event: 'Permit approved by Fayette County', user: 'Sarah Chen' },
       { date: '2026-09-30', event: 'FPL interconnection application submitted', user: 'System' },
       { date: '2026-10-02', event: 'Install date confirmed for Oct 22', user: 'Dispatch' },
     ],
@@ -251,12 +257,13 @@ export const installations: Installation[] = [
     id: 6,
     customer: 'Selina Kyle',
     avatar: avatar6,
-    address: '88 Elm Ct, Dallas TX',
-    coords: [32.78, -96.80],
+    address: '88 Elm Ct, Hamilton OH',
+    coords: [39.40, -84.56],
     systemSize: '7.2 kW',
     phase: 'Completed',
-    phone: '(214) 555-0133',
+    phone: '(513) 555-0133',
     email: 'selina.kyle@email.com',
+    assignedAgentId: 1,
     contractValue: '$23,400',
     panelCount: 18,
     panelModel: 'Q CELLS Q.PEAK DUO (400W)',
@@ -268,10 +275,10 @@ export const installations: Installation[] = [
     warrantyYears: 25,
     installDate: '2026-07-02',
     customerNotes:
-      'Smooth installation with no issues. Customer satisfied with energy savings so far — seeing ~$180/mo reduction. Oncor PTO received in 12 days. Recommended annual panel cleaning due to dust in the area.',
+      'Smooth installation with no issues. Customer satisfied with energy savings so far — seeing ~$180/mo reduction. Duke Energy Ohio PTO received in 12 days. Recommended annual panel cleaning due to dust in the area.',
     history: [
       { date: '2026-05-10', event: 'Initial consultation and site survey', user: 'Mike Reynolds' },
-      { date: '2026-05-25', event: 'Permit approved by City of Dallas', user: 'Sarah Chen' },
+      { date: '2026-05-25', event: 'Permit approved by City of Hamilton', user: 'Sarah Chen' },
       { date: '2026-06-20', event: 'Materials delivered', user: 'System' },
       { date: '2026-06-30', event: 'Installation crew dispatched', user: 'Dispatch' },
       { date: '2026-07-02', event: 'Installation completed and inspected', user: 'Mike Reynolds' },
@@ -293,12 +300,13 @@ export const installations: Installation[] = [
     id: 7,
     customer: 'Bruce Wayne',
     avatar: avatar1,
-    address: '1007 Mountain Dr, Gotham NJ',
-    coords: [40.73, -74.17],
+    address: '1007 Mountain Dr, Newport KY',
+    coords: [39.09, -84.49],
     systemSize: '15.0 kW',
     phase: 'Permit Review',
-    phone: '(201) 555-0155',
+    phone: '(513) 555-0155',
     email: 'b.wayne@email.com',
+    assignedAgentId: 2,
     contractValue: '$48,000',
     panelCount: 36,
     panelModel: 'REC Alpha Pure (420W)',
@@ -315,7 +323,7 @@ export const installations: Installation[] = [
       { date: '2026-09-05', event: 'Site survey completed — slate roof assessment', user: 'Mike Reynolds' },
       { date: '2026-09-15', event: 'Roofing subcontractor engaged for slate work', user: 'Sarah Chen' },
       { date: '2026-09-22', event: 'System design finalized (36 panels, dual battery)', user: 'Sarah Chen' },
-      { date: '2026-09-28', event: 'Permit application submitted to Gotham City Planning', user: 'System' },
+      { date: '2026-09-28', event: 'Permit application submitted to Newport City Planning', user: 'System' },
     ],
     techSpecs: [
       { label: 'DC System Size', value: '15.0 kW' },
@@ -333,12 +341,13 @@ export const installations: Installation[] = [
     id: 8,
     customer: 'Diana Prince',
     avatar: avatar2,
-    address: '1200 Themis Blvd, DC',
-    coords: [38.90, -77.03],
+    address: '1200 Themis Blvd, Mason OH',
+    coords: [39.36, -84.31],
     systemSize: '11.5 kW',
     phase: 'Installation',
-    phone: '(202) 555-0166',
+    phone: '(513) 555-0166',
     email: 'diana.prince@email.com',
+    assignedAgentId: 2,
     contractValue: '$35,800',
     panelCount: 28,
     panelModel: 'SunPower Maxeon 3 (410W)',
@@ -350,11 +359,11 @@ export const installations: Installation[] = [
     warrantyYears: 25,
     installDate: 'In progress (Oct 3-4)',
     customerNotes:
-      'Flat commercial-style roof on a residential property. Ballasted racking with minimal penetrations. Installation is currently in progress — panels being mounted today. Pepco interconnection pending. Customer wants monitoring dashboard accessible on multiple devices.',
+      'Flat commercial-style roof on a residential property. Ballasted racking with minimal penetrations. Installation is currently in progress — panels being mounted today. Duke Energy Ohio interconnection pending. Customer wants monitoring dashboard accessible on multiple devices.',
     history: [
       { date: '2026-07-15', event: 'Site survey completed', user: 'Mike Reynolds' },
       { date: '2026-08-01', event: 'Design approved by customer', user: 'Sarah Chen' },
-      { date: '2026-08-20', event: 'Permit approved by DCRA', user: 'Sarah Chen' },
+      { date: '2026-08-20', event: 'Permit approved by City of Mason', user: 'Sarah Chen' },
       { date: '2026-09-25', event: 'Materials delivered to site', user: 'System' },
       { date: '2026-10-03', event: 'Installation crew dispatched — Day 1', user: 'Dispatch' },
     ],
@@ -380,6 +389,71 @@ export const phaseConfig: Record<Phase, { color: string; step: number }> = {
   'Pending Install': { color: 'primary', step: 3 },
   'Installation': { color: 'info', step: 4 },
   'Completed': { color: 'success', step: 5 },
+}
+
+export interface Milestone {
+  label: string
+  icon: string
+  status: 'completed' | 'in-progress' | 'pending'
+  date?: string
+}
+
+export const MILESTONE_STAGES = [
+  { label: 'Site Survey', icon: 'fi-rr-marker' },
+  { label: 'Design Approved', icon: 'fi-rr-check' },
+  { label: 'Permit Submitted', icon: 'fi-rr-document' },
+  { label: 'Permit Approved', icon: 'fi-rr-document-checked' },
+  { label: 'Materials Ordered', icon: 'fi-rr-truck' },
+  { label: 'Install Scheduled', icon: 'fi-rr-calendar' },
+  { label: 'Install Complete', icon: 'fi-rr-sun' },
+  { label: 'PTO / Inspection', icon: 'fi-rr-check-circle' },
+]
+
+const PHASE_COMPLETED_MILESTONES: Record<Phase, number> = {
+  'Site Survey': 0,
+  'Permit Review': 2,
+  'Pending Install': 4,
+  'Installation': 6,
+  'Completed': 8,
+}
+
+const MILESTONE_KEYWORDS: { keywords: string[]; index: number }[] = [
+  { keywords: ['site survey', 'roof measurement', 'shading analysis'], index: 0 },
+  { keywords: ['design'], index: 1 },
+  { keywords: ['permit application submitted', 'permit submitted', 'interconnection application submitted'], index: 2 },
+  { keywords: ['permit approved'], index: 3 },
+  { keywords: ['materials'], index: 4 },
+  { keywords: ['install date confirmed', 'installation crew dispatched', 'install scheduled'], index: 5 },
+  { keywords: ['installation completed'], index: 6 },
+  { keywords: ['pto', 'inspection'], index: 7 },
+]
+
+export function getMilestones(project: Installation): Milestone[] {
+  const completedCount = PHASE_COMPLETED_MILESTONES[project.phase]
+  const dateMap = new Map<number, string>()
+
+  project.history.forEach((entry) => {
+    const text = entry.event.toLowerCase()
+    for (const { keywords, index } of MILESTONE_KEYWORDS) {
+      if (keywords.some((kw) => text.includes(kw))) {
+        if (!dateMap.has(index)) dateMap.set(index, entry.date)
+      }
+    }
+  })
+
+  return MILESTONE_STAGES.map((stage, index) => {
+    let status: Milestone['status']
+    if (index < completedCount) status = 'completed'
+    else if (index === completedCount && completedCount < MILESTONE_STAGES.length) status = 'in-progress'
+    else status = 'pending'
+
+    return {
+      label: stage.label,
+      icon: stage.icon,
+      status,
+      date: dateMap.get(index),
+    }
+  })
 }
 
 export const PHASE_STEPS = 5

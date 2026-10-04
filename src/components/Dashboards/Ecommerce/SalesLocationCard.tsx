@@ -14,13 +14,13 @@ const SalesLocationCard = () => {
     hoverColor: false,
     backgroundColor: 'transparent',
     markers: [
-      { name: 'Austin, TX', coords: [30.27, -97.74], style: { fill: '#d13b4c' } },
-      { name: 'Denver, CO', coords: [39.74, -104.99], style: { fill: '#3dc7be' } },
-      { name: 'Phoenix, AZ', coords: [33.45, -112.07], style: { fill: '#fd7e14' } },
-      { name: 'Portland, OR', coords: [45.52, -122.68], style: { fill: '#25b865' } },
-      { name: 'Miami, FL', coords: [25.76, -80.19], style: { fill: '#963258' } },
-      { name: 'Columbus, OH', coords: [39.96, -83.0], style: { fill: '#6366f1' } },
-      { name: 'Cincinnati, OH', coords: [39.1, -84.51], style: { fill: '#f59e0b' } },
+      { name: 'Cincinnati, OH', coords: [39.10, -84.51], style: { fill: '#f59e0b' } },
+      { name: 'Covington, KY', coords: [39.08, -84.51], style: { fill: '#6366f1' } },
+      { name: 'Dayton, OH', coords: [39.76, -84.19], style: { fill: '#d13b4c' } },
+      { name: 'Columbus, OH', coords: [39.96, -83.0], style: { fill: '#3dc7be' } },
+      { name: 'Lexington, KY', coords: [38.04, -84.50], style: { fill: '#25b865' } },
+      { name: 'Newport, KY', coords: [39.09, -84.49], style: { fill: '#fd7e14' } },
+      { name: 'Hamilton, OH', coords: [39.40, -84.56], style: { fill: '#963258' } },
     ],
     markerStyle: {
       initial: { fill: '#ff525d', stroke: '#FFF', strokeWidth: 1.5, r: 5 },
@@ -40,11 +40,11 @@ const SalesLocationCard = () => {
   }
 
   const states = [
-    { name: 'Texas', color: 'danger', count: '64 houses' },
-    { name: 'Ohio', color: 'warning', count: '48 houses' },
-    { name: 'Colorado', color: 'success', count: '36 houses' },
-    { name: 'Arizona', color: 'primary', count: '32 houses' },
-    { name: 'Oregon', color: 'dark', count: '24 houses' },
+    { name: 'Ohio', color: 'warning', count: '64 houses' },
+    { name: 'Kentucky', color: 'primary', count: '38 houses' },
+    { name: 'Indiana', color: 'success', count: '22 houses' },
+    { name: 'West Virginia', color: 'danger', count: '12 houses' },
+    { name: 'Michigan', color: 'dark', count: '8 houses' },
   ]
 
   return (
@@ -76,12 +76,12 @@ const SalesLocationCard = () => {
         <MapBase type="us_mill_en" width="100%" height="300px" options={mapOpts} />
         <Stack direction="horizontal" gap={4}>
           <div className="mt-4">
-            <span className="fs-20 fw-bold text-dark">204 houses</span>
+            <span className="fs-20 fw-bold text-dark">144 houses</span>
             <span className="badge bg-success-subtle text-success rounded-pill d-inline-flex align-items-center ms-2">
               <i className="fi fi-rr-arrow-trend-up fs-11"></i>
-              <span>12.68%</span>
+              <span>9.42%</span>
             </span>
-            <span className="fs-13 text-muted mt-1 d-block">Active solar installations across the US.</span>
+            <span className="fs-13 text-muted mt-1 d-block">Active solar installations in the Cincinnati metro area.</span>
           </div>
           <Link to="" className="ms-auto icon-link icon-link-hover link-primary">
             <span>Explore</span>

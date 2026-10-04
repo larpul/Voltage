@@ -6,7 +6,6 @@ import SolarAppointmentsCard from './SolarAppointmentsCard'
 import WeeklyAppointmentsCard from './WeeklyAppointmentsCard'
 import TopSolarProductsCard from './TopSolarProductsCard'
 import ProjectPhasesCard from './ProjectPhasesCard'
-import CincinnatiMapCard from './CincinnatiMapCard'
 import HouseVisitMapCard from './HouseVisitMapCard'
 import InstallationMapCard from './InstallationMapCard'
 import SalesAgentsMapCard from './SalesAgentsMapCard'
@@ -22,7 +21,6 @@ export {
   WeeklyAppointmentsCard,
   TopSolarProductsCard,
   ProjectPhasesCard,
-  CincinnatiMapCard,
   HouseVisitMapCard,
   InstallationMapCard,
   SalesAgentsMapCard,

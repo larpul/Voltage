@@ -1,6 +1,7 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
+import { AgentNotificationProvider } from '@/components/Dashboards/Solar/AgentNotificationContext'
 
 // All layouts containers
 import DefaultLayout from '../Layouts/Default'
@@ -19,6 +20,7 @@ const ThemeRoutes = (props: IRoutesProps) => {
   const { isAuthenticated } = useAuthContext()
   return (
     <React.Fragment>
+      <AgentNotificationProvider>
       <Routes>
         <Route>
           {publicProtectedFlattenRoutes.map((route, idx) => (
@@ -51,6 +53,7 @@ const ThemeRoutes = (props: IRoutesProps) => {
           ))}
         </Route>
       </Routes>
+      </AgentNotificationProvider>
       <Toaster position="top-center" />
     </React.Fragment>
   )
