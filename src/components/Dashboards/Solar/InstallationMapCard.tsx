@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import MapBase from '@/components/UiElements/Maps/Vector/MapBase'
 import { Card, Badge } from 'react-bootstrap'
 import { installations, phaseConfig, Phase, Filter } from './installationData'
@@ -24,6 +24,7 @@ const phaseIcon: Record<Phase, string> = {
 }
 
 const InstallationMapCard = () => {
+  const navigate = useNavigate()
   const [activePhase, setActivePhase] = useState<Filter>('All')
 
   const visible = installations.filter(
@@ -37,8 +38,9 @@ const InstallationMapCard = () => {
   }))
 
   const markerStyle = {
-    initial: { stroke: '#FFF', strokeWidth: 1.5, r: 6 },
+    initial: { stroke: '#FFF', strokeWidth: 1.5, r: 6, cursor: 'pointer' },
     hover: { stroke: '#DDD', strokeWidth: 3 },
+    selected: { stroke: '#FFF', strokeWidth: 2, r: 7 },
   }
 
   const mapOpts = {
@@ -96,7 +98,16 @@ const InstallationMapCard = () => {
 
       {/* Map */}
       <Card.Body className="pt-0">
-        <MapBase type="us_mill_en" width="100%" height="280px" options={mapOpts} />
+        <MapBase
+          type="us_mill_en"
+          width="100%"
+          height="280px"
+          options={mapOpts}
+          onMarkerClick={(index) => {
+            const inst = installations[index]
+            if (inst) navigate(`/installations/${inst.id}`)
+          }}
+        />
       </Card.Body>
 
       {/* Installation list */}

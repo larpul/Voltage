@@ -7,9 +7,10 @@ interface MapBaseProps {
   height?: string
   options?: any
   type: string
+  onMarkerClick?: (index: number) => void
 }
 
-const MapBase = ({ width, height, options, type }: MapBaseProps) => {
+const MapBase = ({ width, height, options, type, onMarkerClick }: MapBaseProps) => {
   const [selectorId] = useState(() => `map-${type}-${++mapInstanceId}`)
   const [map, setMap] = useState()
 
@@ -21,9 +22,20 @@ const MapBase = ({ width, height, options, type }: MapBaseProps) => {
         ...options,
       })
 
+      if (onMarkerClick) {
+        const container = document.getElementById(selectorId)
+        container?.querySelectorAll('circle.jvm-marker').forEach((circle) => {
+          circle.style.cursor = 'pointer'
+          circle.addEventListener('click', () => {
+            const index = parseInt(circle.getAttribute('data-index') || '-1', 10)
+            if (index >= 0) onMarkerClick(index)
+          })
+        })
+      }
+
       setMap(map)
     }
-  }, [selectorId, map, options, type])
+  }, [selectorId, map, options, type, onMarkerClick])
 
   return (
     <>
