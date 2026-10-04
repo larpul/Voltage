@@ -1,10 +1,3 @@
-import avatar1 from '@/assets/images/avatars/1.png'
-import avatar2 from '@/assets/images/avatars/2.png'
-import avatar3 from '@/assets/images/avatars/3.png'
-import avatar4 from '@/assets/images/avatars/4.png'
-import avatar5 from '@/assets/images/avatars/5.png'
-import avatar6 from '@/assets/images/avatars/6.png'
-
 export type AgentStatus = 'Active' | 'Traveling' | 'On Site Visit' | 'Off Duty'
 
 export interface SalesAgent {
@@ -24,7 +17,7 @@ export const salesAgents: SalesAgent[] = [
   {
     id: 1,
     name: 'Mike Reynolds',
-    avatar: avatar1,
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
     currentLocation: 'Portland, OR',
     coords: [45.52, -122.68],
     status: 'On Site Visit',
@@ -36,7 +29,7 @@ export const salesAgents: SalesAgent[] = [
   {
     id: 2,
     name: 'Sarah Chen',
-    avatar: avatar2,
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face',
     currentLocation: 'Austin, TX',
     coords: [30.27, -97.74],
     status: 'Active',
@@ -48,7 +41,7 @@ export const salesAgents: SalesAgent[] = [
   {
     id: 3,
     name: 'James Carter',
-    avatar: avatar3,
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face',
     currentLocation: 'Denver, CO',
     coords: [39.74, -104.99],
     status: 'Traveling',
@@ -60,7 +53,7 @@ export const salesAgents: SalesAgent[] = [
   {
     id: 4,
     name: 'Lisa Torres',
-    avatar: avatar4,
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face',
     currentLocation: 'Miami, FL',
     coords: [25.76, -80.19],
     status: 'On Site Visit',
@@ -72,7 +65,7 @@ export const salesAgents: SalesAgent[] = [
   {
     id: 5,
     name: 'David Park',
-    avatar: avatar5,
+    avatar: 'https://images.unsplash.com/photo-1633332755192-780a367c9a11?w=150&h=150&fit=crop&crop=face',
     currentLocation: 'Phoenix, AZ',
     coords: [33.45, -112.07],
     status: 'Active',
@@ -84,7 +77,7 @@ export const salesAgents: SalesAgent[] = [
   {
     id: 6,
     name: 'Emily Stone',
-    avatar: avatar6,
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face',
     currentLocation: 'Dallas, TX',
     coords: [32.78, -96.80],
     status: 'Off Duty',

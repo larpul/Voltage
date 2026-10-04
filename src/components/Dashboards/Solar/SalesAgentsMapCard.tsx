@@ -118,10 +118,10 @@ const SalesAgentsMapCard = () => {
                   <td style={{ minWidth: 160 }}>
                     <div className="d-flex align-items-center gap-2">
                       <div className="position-relative">
-                        <img src={agent.avatar} alt={agent.name} className="rounded-circle" width={28} height={28} />
+                        <img src={agent.avatar} alt={agent.name} className="rounded-circle object-fit-cover" width={40} height={40} />
                         <span
                           className="position-absolute rounded-circle border border-2 border-white"
-                          style={{ width: 10, height: 10, background: aCfg.hex, bottom: 0, right: 0 }}
+                          style={{ width: 12, height: 12, background: aCfg.hex, bottom: 0, right: 0 }}
                         />
                       </div>
                       <span className="fs-13 fw-semibold text-dark">{agent.name}</span>
@@ -152,9 +152,11 @@ const SalesAgentsMapCard = () => {
       <Modal show={!!selectedAgent} onHide={() => setSelectedAgent(null)} centered size="sm">
         {selectedAgent && cfg && (
           <>
-            <Modal.Header closeButton>
-              <Modal.Title as="h6" className="d-flex align-items-center gap-2">
-                <img src={selectedAgent.avatar} alt={selectedAgent.name} className="rounded-circle" width={32} height={32} />
+            <Modal.Header closeButton className="position-relative border-0" style={{ minHeight: 120, backgroundImage: `url(${selectedAgent.avatar})`, backgroundSize: 'cover', backgroundPosition: 'center top' }}>
+              <div className="position-absolute top-0 start-0 w-100 h-100" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.65))' }} />
+              <style>{'.modal .btn-close { filter: invert(1) grayscale(1) brightness(2); z-index: 1; }'}</style>
+              <Modal.Title as="h6" className="d-flex align-items-center gap-2 position-relative text-white">
+                <img src={selectedAgent.avatar} alt={selectedAgent.name} className="rounded-circle object-fit-cover border border-2 border-white" width={48} height={48} />
                 {selectedAgent.name}
               </Modal.Title>
             </Modal.Header>
