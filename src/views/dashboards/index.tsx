@@ -10,6 +10,7 @@ import {
   ProjectPhasesCard,
   CincinnatiMapCard,
   HouseVisitMapCard,
+  SiteVisitCalendarCard,
 } from '@/components/Dashboards/Solar'
 import { SalesLocationCard } from '@/components/Dashboards/Ecommerce'
 import { Col, Row } from 'react-bootstrap'
@@ -48,6 +49,9 @@ const Solar = () => {
         </Col>
         <Col xl={12}>
           <HouseVisitMapCard />
+        </Col>
+        <Col xl={12}>
+          <SiteVisitCalendarCard />
         </Col>
         <Col xl={12}>
           <SolarAppointmentsCard />
