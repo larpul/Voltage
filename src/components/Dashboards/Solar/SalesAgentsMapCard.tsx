@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { Card, Badge, Modal, Button } from 'react-bootstrap'
+import { Card, Badge, Modal, Button, ProgressBar } from 'react-bootstrap'
 import MapBase from '@/components/UiElements/Maps/Vector/MapBase'
 import { salesAgents, statusConfig, AgentStatus, SalesAgent } from './salesAgentsData'
 import 'jsvectormap/dist/js/jsvectormap.min.js'
@@ -190,6 +190,54 @@ const SalesAgentsMapCard = () => {
                   <span className="fs-13 fw-semibold text-truncate" style={{ maxWidth: 180 }}>{selectedAgent.email}</span>
                 </div>
               </div>
+              {/* Commission tracking */}
+              {(() => {
+                const pct = Math.round((selectedAgent.monthlyEarned / selectedAgent.monthlyGoal) * 100)
+                const commission = Math.round(selectedAgent.monthlyEarned * selectedAgent.commissionRate / 100)
+                const remaining = selectedAgent.monthlyGoal - selectedAgent.monthlyEarned
+                return (
+                  <div className="mt-3 pt-3 border-top">
+                    <div className="d-flex justify-content-between align-items-center mb-2">
+                      <span className="fs-13 fw-semibold text-dark">Commission Tracking</span>
+                      <Badge bg={pct >= 100 ? 'success' : pct >= 75 ? 'primary' : pct >= 50 ? 'warning' : 'danger'}>
+                        {pct}% of goal
+                      </Badge>
+                    </div>
+                    <ProgressBar
+                      now={Math.min(pct, 100)}
+                      variant={pct >= 100 ? 'success' : pct >= 75 ? 'primary' : pct >= 50 ? 'warning' : 'danger'}
+                      className="mb-3"
+                      style={{ height: 8 }}
+                    />
+                    <div className="d-flex flex-column gap-2">
+                      <div className="d-flex justify-content-between">
+                        <span className="fs-13 text-muted">Monthly Sales</span>
+                        <span className="fs-13 fw-semibold">${selectedAgent.monthlyEarned.toLocaleString()}</span>
+                      </div>
+                      <div className="d-flex justify-content-between">
+                        <span className="fs-13 text-muted">Monthly Goal</span>
+                        <span className="fs-13 fw-semibold">${selectedAgent.monthlyGoal.toLocaleString()}</span>
+                      </div>
+                      <div className="d-flex justify-content-between">
+                        <span className="fs-13 text-muted">Remaining to Goal</span>
+                        <span className={`fs-13 fw-semibold ${remaining > 0 ? '' : 'text-success'}`}>${Math.max(remaining, 0).toLocaleString()}</span>
+                      </div>
+                      <div className="d-flex justify-content-between">
+                        <span className="fs-13 text-muted">Commission Rate</span>
+                        <span className="fs-13 fw-semibold">{selectedAgent.commissionRate}%</span>
+                      </div>
+                      <div className="d-flex justify-content-between">
+                        <span className="fs-13 text-muted">Est. Commission</span>
+                        <span className="fs-13 fw-bold text-success">${commission.toLocaleString()}</span>
+                      </div>
+                      <div className="d-flex justify-content-between">
+                        <span className="fs-13 text-muted">Deals Closed</span>
+                        <span className="fs-13 fw-semibold">{selectedAgent.dealsClosed}</span>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })()}
             </Modal.Body>
             <Modal.Footer className="gap-2">
               <a href={`tel:${selectedAgent.phone.replace(/[^0-9+]/g, '')}`} className="btn btn-success btn-sm">

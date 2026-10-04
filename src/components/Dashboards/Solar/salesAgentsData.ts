@@ -11,6 +11,10 @@ export interface SalesAgent {
   assignedInstallations: number
   phone: string
   email: string
+  monthlyGoal: number
+  monthlyEarned: number
+  commissionRate: number
+  dealsClosed: number
 }
 
 export const salesAgents: SalesAgent[] = [
@@ -25,6 +29,10 @@ export const salesAgents: SalesAgent[] = [
     assignedInstallations: 4,
     phone: '(503) 555-0101',
     email: 'mike.reynolds@volt360.com',
+    monthlyGoal: 75000,
+    monthlyEarned: 52000,
+    commissionRate: 8,
+    dealsClosed: 6,
   },
   {
     id: 2,
@@ -37,6 +45,10 @@ export const salesAgents: SalesAgent[] = [
     assignedInstallations: 3,
     phone: '(512) 555-0102',
     email: 'sarah.chen@volt360.com',
+    monthlyGoal: 75000,
+    monthlyEarned: 71000,
+    commissionRate: 8,
+    dealsClosed: 9,
   },
   {
     id: 3,
@@ -49,6 +61,10 @@ export const salesAgents: SalesAgent[] = [
     assignedInstallations: 2,
     phone: '(303) 555-0103',
     email: 'james.carter@volt360.com',
+    monthlyGoal: 60000,
+    monthlyEarned: 34500,
+    commissionRate: 7,
+    dealsClosed: 4,
   },
   {
     id: 4,
@@ -61,6 +77,10 @@ export const salesAgents: SalesAgent[] = [
     assignedInstallations: 3,
     phone: '(305) 555-0104',
     email: 'lisa.torres@volt360.com',
+    monthlyGoal: 70000,
+    monthlyEarned: 61500,
+    commissionRate: 7.5,
+    dealsClosed: 7,
   },
   {
     id: 5,
@@ -73,6 +93,10 @@ export const salesAgents: SalesAgent[] = [
     assignedInstallations: 2,
     phone: '(602) 555-0105',
     email: 'david.park@volt360.com',
+    monthlyGoal: 65000,
+    monthlyEarned: 28000,
+    commissionRate: 6.5,
+    dealsClosed: 3,
   },
   {
     id: 6,
@@ -85,6 +109,10 @@ export const salesAgents: SalesAgent[] = [
     assignedInstallations: 0,
     phone: '(214) 555-0106',
     email: 'emily.stone@volt360.com',
+    monthlyGoal: 50000,
+    monthlyEarned: 12000,
+    commissionRate: 6,
+    dealsClosed: 1,
   },
 ]
 
