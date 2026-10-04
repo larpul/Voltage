@@ -1,0 +1,1 @@
+import{c as e,aK as a,aL as r,j as o}from"./index-bba1f892.js";const l=()=>{const{settings:t}=e(),s=t.theme==="dark"?a:r;return o.jsx("div",{className:"barnd-logo",children:o.jsx("img",{src:s,alt:"Volt360 — Solutions for a Greener Planet",style:{height:"40px",width:"auto"}})})};export{l as L};

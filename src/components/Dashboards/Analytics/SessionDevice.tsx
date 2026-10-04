@@ -4,7 +4,7 @@ import ReactApexChart from 'react-apexcharts'
 
 const SessionDevice = () => {
   const sessionDeviceData = [
-    { label: 'Desktop', value: 37.74, change: '+2.6', color: '#3E97FF' },
+    { label: 'Desktop', value: 37.74, change: '+2.6', color: '#FD670A' },
     { label: 'Mobile', value: 34.23, change: '-3.2', color: '#e49e3d' },
     { label: 'Tablet', value: 22.65, change: '-2.2', color: '#25b865' },
     { label: 'Others', value: 24.47, change: '+2.8', color: '#d13b4c' },

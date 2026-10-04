@@ -4,6 +4,7 @@ import Avatar from '@/components/UiElements/Base/Avatars/Avatar'
 import { getInstallationById, phaseConfig, PHASE_STEPS } from '@/components/Dashboards/Solar/installationData'
 import AssignAgentDropdown from '@/components/Dashboards/Solar/AssignAgentDropdown'
 import MilestonesCard from '@/components/Dashboards/Solar/MilestonesCard'
+import HouseViewer3D from '@/components/Dashboards/Solar/HouseViewer3D'
 
 const InstallationDetail = () => {
   const { id } = useParams<{ id: string }>()
@@ -59,6 +60,22 @@ const InstallationDetail = () => {
               <AssignAgentDropdown installation={project} />
             </div>
           </div>
+        </Card.Body>
+      </Card>
+
+      {/* Home 3D View */}
+      <Card className="mb-4">
+        <Card.Header className="py-3 d-flex justify-content-between align-items-center">
+          <Card.Title className="mb-0">
+            <i className="fi fi-rr-home me-2"></i>
+            Home 3D View
+          </Card.Title>
+          <span className="fs-12 text-muted">
+            {project.roofType} · {project.orientation}
+          </span>
+        </Card.Header>
+        <Card.Body>
+          <HouseViewer3D installation={project} />
         </Card.Body>
       </Card>
 

@@ -28,7 +28,7 @@ const EventDetailModal: React.FC<EventDetailModalProps> = ({
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#d33',
-      cancelButtonColor: '#3E97FF',
+      cancelButtonColor: '#FD670A',
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed && selectedEvent && selectedEvent.id) {

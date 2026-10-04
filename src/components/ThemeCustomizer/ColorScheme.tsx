@@ -34,14 +34,14 @@ const ColorScheme = ({ handleChangeColorScheme, colorScheme, schemeConstants }: 
                   style={{
                     width: '33.333%',
                     height: '2.5rem',
-                    backgroundColor: '#3E97FF',
+                    backgroundColor: '#FD670A',
                   }}
                 ></span>
                 <span
                   style={{
                     width: '33.333%',
                     height: '2.5rem',
-                    backgroundColor: '#3e97ff',
+                    backgroundColor: '#fd670a',
                     opacity: '0.75',
                   }}
                 ></span>
@@ -49,7 +49,7 @@ const ColorScheme = ({ handleChangeColorScheme, colorScheme, schemeConstants }: 
                   style={{
                     width: '33.333%',
                     height: '2.5rem',
-                    backgroundColor: '#3E97FF',
+                    backgroundColor: '#FD670A',
                     opacity: '0.50',
                   }}
                 ></span>
@@ -58,7 +58,7 @@ const ColorScheme = ({ handleChangeColorScheme, colorScheme, schemeConstants }: 
                   style={{
                     width: '33.333%',
                     height: '2.5rem',
-                    backgroundColor: '#3E97FF',
+                    backgroundColor: '#FD670A',
                     opacity: '0.25',
                   }}
                 ></span>

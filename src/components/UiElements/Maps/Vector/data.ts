@@ -261,7 +261,7 @@ const mapOptsLine = {
   markerStyle: {
     initial: {
       r: 6,
-      fill: '#3e97ff',
+      fill: '#fd670a',
       stroke: '#fff',
       strokeWidth: 3,
     },
@@ -295,7 +295,7 @@ const mapOptsAdvanced = {
   },
   regionStyle: {
     selected: {
-      fill: '#3E97FF',
+      fill: '#FD670A',
     },
   },
   regionLabelStyle: {},
@@ -368,7 +368,7 @@ const mapOptsAdvanced = {
         },
         scale: {
           'Criteria one': '#ffd400',
-          'Criteria two': '#3e97ff',
+          'Criteria two': '#fd670a',
         },
         values: {
           0: 'Criteria one',

@@ -82,7 +82,7 @@ const AnalyticProgress = () => {
                 width: '8rem',
               },
               path: {
-                stroke: '#3E97FF',
+                stroke: '#FD670A',
                 strokeWidth: '0.375rem',
                 strokeLinecap: 'round',
               },
@@ -93,7 +93,7 @@ const AnalyticProgress = () => {
               text: {
                 fontSize: '1rem',
                 fontWeight: 'bold',
-                fill: '#3E97FF',
+                fill: '#FD670A',
               },
             }}
           />

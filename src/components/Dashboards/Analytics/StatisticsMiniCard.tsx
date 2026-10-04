@@ -60,7 +60,7 @@ const columns = [
   {
     name: 'Page Views',
     seriesData: [35, 80, 45, 60, 90, 50, 75, 40, 85],
-    color: '#3E97FF',
+    color: '#FD670A',
   },
   {
     name: 'Site Impressions',

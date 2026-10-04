@@ -48,12 +48,12 @@ const notificationTypes = [
     action: () =>
       toast.success('Look at my styles.', {
         style: {
-          border: '1px solid #3E97FF',
+          border: '1px solid #FD670A',
           padding: '16px',
-          color: '#3E97FF',
+          color: '#FD670A',
         },
         iconTheme: {
-          primary: '#3E97FF',
+          primary: '#FD670A',
           secondary: '#FFFAEE',
         },
       }),
