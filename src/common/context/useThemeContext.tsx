@@ -61,7 +61,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   const getDefaultSettings = () => {
     return {
-      color: ThemeSettings.color.primary,
+      color: ThemeSettings.color.black,
       layout: {
         type:
           params['layout_type'] === 'horizontal'
