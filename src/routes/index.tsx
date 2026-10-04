@@ -10,6 +10,7 @@ const Analytics = React.lazy(() => import('./../views/dashboards/Analytics'))
 const CRM = React.lazy(() => import('./../views/dashboards/CRM'))
 const InstallationDetail = React.lazy(() => import('./../views/dashboards/InstallationDetail'))
 const SiteVisitCalendar = React.lazy(() => import('./../views/dashboards/SiteVisitCalendar'))
+const SmartScheduling = React.lazy(() => import('./../views/dashboards/SmartScheduling'))
 
 // Apps
 const Chat = React.lazy(() => import('./../views/apps/Chat'))
@@ -239,6 +240,12 @@ const dashboardRoutes: RoutesProps = {
       path: '/dashboards/site-visits',
       name: 'Site Visit Calendar',
       element: <SiteVisitCalendar />,
+      route: PrivateRoute,
+    },
+    {
+      path: '/dashboards/smart-scheduling',
+      name: 'Smart Scheduling Agent',
+      element: <SmartScheduling />,
       route: PrivateRoute,
     },
   ],
