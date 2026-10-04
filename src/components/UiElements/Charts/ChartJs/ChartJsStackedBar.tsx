@@ -77,7 +77,7 @@ const data = {
     {
       label: 'Revenue',
       data: [22, 39, 30, 20, 25, 28, 22, 39, 30, 30, 25, 38],
-      backgroundColor: '#3E97FF',
+      backgroundColor: '#FD670A',
     },
     {
       label: 'Expenses',

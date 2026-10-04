@@ -119,6 +119,6 @@ export const salesAgents: SalesAgent[] = [
 export const statusConfig: Record<AgentStatus, { color: string; hex: string; icon: string }> = {
   'Active': { color: 'success', hex: '#25b865', icon: 'fi-rr-marker' },
   'Traveling': { color: 'warning', hex: '#fb6c25', icon: 'fi-rr-road' },
-  'On Site Visit': { color: 'primary', hex: '#3e97ff', icon: 'fi-rr-home' },
+  'On Site Visit': { color: 'primary', hex: '#fd670a', icon: 'fi-rr-home' },
   'Off Duty': { color: 'secondary', hex: '#9e9e9e', icon: 'fi-rr-minus-circle' },
 }

@@ -45,7 +45,7 @@ const Kanban: React.FC = () => {
       id: uuidv4(),
       title: 'New Board',
       tasks: [],
-      color: '#3E97FF',
+      color: '#FD670A',
     }
     setData((prevData) => [...prevData, newColumn])
     toast.success(`${newColumn.title} added successfully`)

@@ -10,7 +10,7 @@ import 'jsvectormap/dist/css/jsvectormap.min.css'
 const phaseHex: Record<Phase, string> = {
   'Site Survey': '#02a0e4',
   'Permit Review': '#fb6c25',
-  'Pending Install': '#3e97ff',
+  'Pending Install': '#fd670a',
   'Installation': '#3dc7be',
   'Completed': '#25b865',
 }
