@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import { Card, Badge, Modal, Button, ProgressBar } from 'react-bootstrap'
 import MapBase from '@/components/UiElements/Maps/Vector/MapBase'
+import AgentChatPanel from './AgentChatPanel'
 import { salesAgents, statusConfig, AgentStatus, SalesAgent } from './salesAgentsData'
 import 'jsvectormap/dist/js/jsvectormap.min.js'
 import 'jsvectormap/dist/maps/us-mill-en.js'
@@ -11,6 +12,7 @@ type Filter = AgentStatus | 'All'
 const SalesAgentsMapCard = () => {
   const [activeStatus, setActiveStatus] = useState<Filter>('All')
   const [selectedAgent, setSelectedAgent] = useState<SalesAgent | null>(null)
+  const [showChat, setShowChat] = useState(false)
 
   const visible = salesAgents.filter(
     (a) => activeStatus === 'All' || a.status === activeStatus,
@@ -149,7 +151,7 @@ const SalesAgentsMapCard = () => {
       </div>
 
       {/* Agent detail modal */}
-      <Modal show={!!selectedAgent} onHide={() => setSelectedAgent(null)} centered size="sm">
+      <Modal show={!!selectedAgent} onHide={() => { setSelectedAgent(null); setShowChat(false) }} centered size="sm">
         {selectedAgent && cfg && (
           <>
             <Modal.Header closeButton className="position-relative border-0" style={{ minHeight: 120, backgroundImage: `url(${selectedAgent.avatar})`, backgroundSize: 'cover', backgroundPosition: 'center top' }}>
@@ -239,6 +241,14 @@ const SalesAgentsMapCard = () => {
                 )
               })()}
             </Modal.Body>
+
+            {/* Chat panel */}
+            {showChat && (
+              <Modal.Body className="pt-0 border-top">
+                <AgentChatPanel agent={selectedAgent} />
+              </Modal.Body>
+            )}
+
             <Modal.Footer className="gap-2">
               <a href={`tel:${selectedAgent.phone.replace(/[^0-9+]/g, '')}`} className="btn btn-success btn-sm">
                 <i className="fi fi-rr-phone-call me-1"></i>Call
@@ -246,7 +256,14 @@ const SalesAgentsMapCard = () => {
               <a href={`mailto:${selectedAgent.email}`} className="btn btn-primary btn-sm">
                 <i className="fi fi-rr-envelope me-1"></i>Email
               </a>
-              <Button variant="light" size="sm" onClick={() => setSelectedAgent(null)}>Close</Button>
+              <Button
+                variant={showChat ? 'dark' : 'warning'}
+                size="sm"
+                onClick={() => setShowChat(!showChat)}
+              >
+                <i className="fi fi-rr-comments me-1"></i>{showChat ? 'Hide Chat' : 'Chat'}
+              </Button>
+              <Button variant="light" size="sm" onClick={() => { setSelectedAgent(null); setShowChat(false) }}>Close</Button>
             </Modal.Footer>
           </>
         )}
