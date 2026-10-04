@@ -5,6 +5,7 @@ import { getInstallationById, phaseConfig, PHASE_STEPS } from '@/components/Dash
 import AssignAgentDropdown from '@/components/Dashboards/Solar/AssignAgentDropdown'
 import MilestonesCard from '@/components/Dashboards/Solar/MilestonesCard'
 import HouseViewer3D from '@/components/Dashboards/Solar/HouseViewer3D'
+import { downloadInstallationReport } from '@/components/Dashboards/Solar/generateInstallationReport'
 
 const InstallationDetail = () => {
   const { id } = useParams<{ id: string }>()
@@ -33,6 +34,13 @@ const InstallationDetail = () => {
             <Link to="/" className="btn btn-soft-primary btn-sm align-self-start">
               <i className="fi fi-rr-arrow-left me-1"></i> Back
             </Link>
+            <button
+              type="button"
+              className="btn btn-soft-success btn-sm align-self-start"
+              onClick={() => downloadInstallationReport(project)}
+            >
+              <i className="fi fi-rr-download me-1"></i> Download Report
+            </button>
             <Avatar size="lg" type="image" src={project.avatar} alt={project.customer} />
             <div className="flex-grow-1">
               <h4 className="fw-bold mb-1">{project.customer}</h4>
