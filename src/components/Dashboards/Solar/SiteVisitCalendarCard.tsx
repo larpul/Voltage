@@ -1,14 +1,21 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import { Card, Stack, Badge } from 'react-bootstrap'
-import { getSiteVisitEvents, categoryConfig, type EventCategory } from './siteVisitEvents'
+import { Card, Stack, Badge, Button } from 'react-bootstrap'
+import { getSiteVisitEvents, categoryConfig, type EventCategory, type SiteVisitEvent } from './siteVisitEvents'
+import ScheduleVisitModal from './ScheduleVisitModal'
 
 const SiteVisitCalendarCard = () => {
   const navigate = useNavigate()
   const [phaseFilter, setPhaseFilter] = useState<string>('all')
-  const events = useMemo(() => getSiteVisitEvents(), [])
+  const [showScheduleModal, setShowScheduleModal] = useState(false)
+  const [customEvents, setCustomEvents] = useState<SiteVisitEvent[]>([])
+  const events = useMemo(() => [...getSiteVisitEvents(), ...customEvents], [customEvents])
+
+  const handleScheduleVisit = useCallback((event: SiteVisitEvent) => {
+    setCustomEvents((prev) => [...prev, event])
+  }, [])
 
   const phases = useMemo(() => {
     const unique = Array.from(new Set(events.map((e) => e.phase)))
@@ -30,20 +37,28 @@ const SiteVisitCalendarCard = () => {
   const legendCategories = Object.keys(categoryConfig) as EventCategory[]
 
   return (
+    <>
     <Card>
       <Card.Header className="py-3 d-flex justify-content-between align-items-center">
         <Card.Title className="mb-0">
           <i className="fi fi-rr-calendar me-2 text-primary"></i>
           Site Visit Calendar
         </Card.Title>
-        <Stack
-          role="button"
-          className="text-primary fs-12 fw-medium cursor-pointer"
-          style={{ cursor: 'pointer' }}
-          onClick={() => navigate('/dashboards/site-visits')}
-        >
-          <i className="fi fi-rr-arrow-up-right-from-square me-1"></i>
-          Full Calendar
+        <Stack direction="horizontal" gap={3} className="align-items-center">
+          <Button variant="primary" size="sm" onClick={() => setShowScheduleModal(true)}>
+            <i className="fi fi-rr-calendar-plus me-1"></i>
+            <span className="d-none d-sm-inline">Schedule Visit</span>
+            <span className="d-sm-none">New</span>
+          </Button>
+          <Stack
+            role="button"
+            className="text-primary fs-12 fw-medium cursor-pointer"
+            style={{ cursor: 'pointer' }}
+            onClick={() => navigate('/dashboards/site-visits')}
+          >
+            <i className="fi fi-rr-arrow-up-right-from-square me-1"></i>
+            Full Calendar
+          </Stack>
         </Stack>
       </Card.Header>
       <Card.Body className="pt-2">
@@ -116,6 +131,13 @@ const SiteVisitCalendarCard = () => {
         />
       </Card.Body>
     </Card>
+
+    <ScheduleVisitModal
+      show={showScheduleModal}
+      handleClose={() => setShowScheduleModal(false)}
+      handleSave={handleScheduleVisit}
+    />
+    </>
   )
 }
 
