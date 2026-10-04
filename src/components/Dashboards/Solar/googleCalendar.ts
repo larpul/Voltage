@@ -15,6 +15,8 @@ export const isGoogleCalendarConfigured = (): boolean => GOOGLE_CLIENT_ID.trim()
 
 const GIS_SRC = 'https://accounts.google.com/gsi/client'
 const CALENDAR_SCOPE = 'https://www.googleapis.com/auth/calendar.readonly'
+/** Safety net — Google never calls back if the consent popup is abandoned. */
+const CONSENT_TIMEOUT_MS = 60_000
 const USERINFO_URL = 'https://www.googleapis.com/oauth2/v3/userinfo'
 const FREEBUSY_URL = 'https://www.googleapis.com/calendar/v3/freeBusy'
 
@@ -58,7 +60,7 @@ interface GoogleIdentity {
       client_id: string
       scope: string
       callback: (response: TokenResponse) => void
-      error_callback?: (error: { message?: string }) => void
+      error_callback?: (error: { message?: string; type?: string }) => void
     }) => TokenClient
     revoke?: (token: string) => void
   }
@@ -108,21 +110,54 @@ export async function connectGoogleCalendar(): Promise<GoogleConnection> {
   const identity = await loadGoogleIdentity()
 
   return new Promise<GoogleConnection>((resolve, reject) => {
+    let settled = false
+    let timer: ReturnType<typeof setTimeout>
+
+    // Settles exactly once, so the caller is never left waiting on a silent popup.
+    const settle = (run: () => void) => {
+      if (settled) return
+      settled = true
+      clearTimeout(timer)
+      run()
+    }
+
+    timer = setTimeout(
+      () =>
+        settle(() =>
+          reject(
+            new Error(
+              'Google sign-in did not complete — allow pop-ups for this page (or open the app in its own tab) and try again',
+            ),
+          ),
+        ),
+      CONSENT_TIMEOUT_MS,
+    )
+
     const client = identity.oauth2.initTokenClient({
       client_id: GOOGLE_CLIENT_ID,
       scope: CALENDAR_SCOPE,
       callback: (response) => {
         if (response.error || !response.access_token) {
-          reject(new Error(response.error ?? 'Google sign-in was cancelled'))
+          settle(() => reject(new Error(response.error ?? 'Google sign-in was cancelled')))
           return
         }
         const accessToken = response.access_token
         const expiresAt = Date.now() + (Number(response.expires_in) || 3600) * 1000
         fetchAccountEmail(accessToken)
-          .then((email) => resolve({ accessToken, email, expiresAt }))
-          .catch(() => resolve({ accessToken, email: 'primary', expiresAt }))
+          .then((email) => settle(() => resolve({ accessToken, email, expiresAt })))
+          .catch(() => settle(() => resolve({ accessToken, email: 'primary', expiresAt })))
       },
-      error_callback: (error) => reject(new Error(error?.message ?? 'Google sign-in failed')),
+      error_callback: (error) =>
+        settle(() =>
+          reject(
+            new Error(
+              error?.type === 'popup_closed'
+                ? 'Google sign-in was cancelled'
+                : error?.message ??
+                  'Google sign-in was blocked — allow pop-ups for this page and try again',
+            ),
+          ),
+        ),
     })
     client.requestAccessToken()
   })
