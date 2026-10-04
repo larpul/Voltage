@@ -33,7 +33,6 @@ type SyncState = 'idle' | 'syncing' | 'success' | 'error'
 const SolarAppointmentsCard = () => {
   const [syncState, setSyncState] = useState<SyncState>('idle')
   const [syncMessage, setSyncMessage] = useState('')
-  const [syncedIds, setSyncedIds] = useState<number[]>([])
 
   const handleSync = async () => {
     if (!isGoogleCalendarConfigured()) {
@@ -58,11 +57,6 @@ const SolarAppointmentsCard = () => {
 
       const result = await syncAppointmentsToGoogleCalendar(toSync)
 
-      const synced = appointments
-        .filter((apt) => apt.status.text !== 'Cancelled')
-        .map((apt) => apt.id)
-
-      setSyncedIds(synced)
       setSyncState('success')
       setSyncMessage(
         `Synced ${result.success} appointment${result.success !== 1 ? 's' : ''} to Google Calendar` +
