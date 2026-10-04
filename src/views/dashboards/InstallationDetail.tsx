@@ -3,6 +3,7 @@ import { Card, Row, Col, Badge } from 'react-bootstrap'
 import Avatar from '@/components/UiElements/Base/Avatars/Avatar'
 import { getInstallationById, phaseConfig, PHASE_STEPS } from '@/components/Dashboards/Solar/installationData'
 import AssignAgentDropdown from '@/components/Dashboards/Solar/AssignAgentDropdown'
+import MilestonesCard from '@/components/Dashboards/Solar/MilestonesCard'
 
 const InstallationDetail = () => {
   const { id } = useParams<{ id: string }>()
@@ -149,6 +150,13 @@ const InstallationDetail = () => {
               </div>
             </Card.Body>
           </Card>
+        </Col>
+      </Row>
+
+      {/* Project Milestone Tracker */}
+      <Row className="g-3 g-md-4 mt-0">
+        <Col xs={12}>
+          <MilestonesCard installation={project} />
         </Col>
       </Row>
     </>

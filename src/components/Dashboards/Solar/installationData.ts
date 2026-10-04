@@ -391,6 +391,71 @@ export const phaseConfig: Record<Phase, { color: string; step: number }> = {
   'Completed': { color: 'success', step: 5 },
 }
 
+export interface Milestone {
+  label: string
+  icon: string
+  status: 'completed' | 'in-progress' | 'pending'
+  date?: string
+}
+
+export const MILESTONE_STAGES = [
+  { label: 'Site Survey', icon: 'fi-rr-marker' },
+  { label: 'Design Approved', icon: 'fi-rr-check' },
+  { label: 'Permit Submitted', icon: 'fi-rr-document' },
+  { label: 'Permit Approved', icon: 'fi-rr-document-checked' },
+  { label: 'Materials Ordered', icon: 'fi-rr-truck' },
+  { label: 'Install Scheduled', icon: 'fi-rr-calendar' },
+  { label: 'Install Complete', icon: 'fi-rr-sun' },
+  { label: 'PTO / Inspection', icon: 'fi-rr-check-circle' },
+]
+
+const PHASE_COMPLETED_MILESTONES: Record<Phase, number> = {
+  'Site Survey': 0,
+  'Permit Review': 2,
+  'Pending Install': 4,
+  'Installation': 6,
+  'Completed': 8,
+}
+
+const MILESTONE_KEYWORDS: { keywords: string[]; index: number }[] = [
+  { keywords: ['site survey', 'roof measurement', 'shading analysis'], index: 0 },
+  { keywords: ['design'], index: 1 },
+  { keywords: ['permit application submitted', 'permit submitted', 'interconnection application submitted'], index: 2 },
+  { keywords: ['permit approved'], index: 3 },
+  { keywords: ['materials'], index: 4 },
+  { keywords: ['install date confirmed', 'installation crew dispatched', 'install scheduled'], index: 5 },
+  { keywords: ['installation completed'], index: 6 },
+  { keywords: ['pto', 'inspection'], index: 7 },
+]
+
+export function getMilestones(project: Installation): Milestone[] {
+  const completedCount = PHASE_COMPLETED_MILESTONES[project.phase]
+  const dateMap = new Map<number, string>()
+
+  project.history.forEach((entry) => {
+    const text = entry.event.toLowerCase()
+    for (const { keywords, index } of MILESTONE_KEYWORDS) {
+      if (keywords.some((kw) => text.includes(kw))) {
+        if (!dateMap.has(index)) dateMap.set(index, entry.date)
+      }
+    }
+  })
+
+  return MILESTONE_STAGES.map((stage, index) => {
+    let status: Milestone['status']
+    if (index < completedCount) status = 'completed'
+    else if (index === completedCount && completedCount < MILESTONE_STAGES.length) status = 'in-progress'
+    else status = 'pending'
+
+    return {
+      label: stage.label,
+      icon: stage.icon,
+      status,
+      date: dateMap.get(index),
+    }
+  })
+}
+
 export const PHASE_STEPS = 5
 
 export function getInstallationById(id: number): Installation | undefined {
