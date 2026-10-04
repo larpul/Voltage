@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { Card, Badge } from 'react-bootstrap'
+import { useState, useCallback } from 'react'
+import { Card, Badge, Modal, Button } from 'react-bootstrap'
 import MapBase from '@/components/UiElements/Maps/Vector/MapBase'
-import { salesAgents, statusConfig, AgentStatus } from './salesAgentsData'
+import { salesAgents, statusConfig, AgentStatus, SalesAgent } from './salesAgentsData'
 import 'jsvectormap/dist/js/jsvectormap.min.js'
 import 'jsvectormap/dist/maps/us-mill-en.js'
 import 'jsvectormap/dist/css/jsvectormap.min.css'
@@ -10,10 +10,16 @@ type Filter = AgentStatus | 'All'
 
 const SalesAgentsMapCard = () => {
   const [activeStatus, setActiveStatus] = useState<Filter>('All')
+  const [selectedAgent, setSelectedAgent] = useState<SalesAgent | null>(null)
 
   const visible = salesAgents.filter(
     (a) => activeStatus === 'All' || a.status === activeStatus,
   )
+
+  const handleMarkerClick = useCallback((index: number) => {
+    const agent = visible[index]
+    if (agent) setSelectedAgent(agent)
+  }, [visible])
 
   const markers = visible.map((a) => ({
     name: `${a.name} — ${a.currentLocation}`,
@@ -43,6 +49,7 @@ const SalesAgentsMapCard = () => {
   }
 
   const statuses = Object.keys(statusConfig) as AgentStatus[]
+  const cfg = selectedAgent ? statusConfig[selectedAgent.status] : null
 
   return (
     <Card>
@@ -62,17 +69,17 @@ const SalesAgentsMapCard = () => {
             All ({salesAgents.length})
           </span>
           {statuses.map((status) => {
-            const cfg = statusConfig[status]
+            const sCfg = statusConfig[status]
             const count = salesAgents.filter((a) => a.status === status).length
             const active = activeStatus === status
             return (
               <span
                 key={status}
-                className={`badge px-3 py-2 bg-${cfg.color}-subtle text-${cfg.color} ${active ? `border border-${cfg.color}` : ''}`}
+                className={`badge px-3 py-2 bg-${sCfg.color}-subtle text-${sCfg.color} ${active ? `border border-${sCfg.color}` : ''}`}
                 style={{ cursor: 'pointer' }}
                 onClick={() => setActiveStatus(active ? 'All' : status)}
               >
-                <i className={`fi ${cfg.icon}`}></i>
+                <i className={`fi ${sCfg.icon}`}></i>
                 <span className="ms-2">{status} ({count})</span>
               </span>
             )
@@ -87,6 +94,7 @@ const SalesAgentsMapCard = () => {
           width="100%"
           height="280px"
           options={mapOpts}
+          onMarkerClick={handleMarkerClick}
         />
       </Card.Body>
 
@@ -104,16 +112,16 @@ const SalesAgentsMapCard = () => {
           </thead>
           <tbody>
             {visible.map((agent) => {
-              const cfg = statusConfig[agent.status]
+              const aCfg = statusConfig[agent.status]
               return (
-                <tr key={agent.id}>
+                <tr key={agent.id} style={{ cursor: 'pointer' }} onClick={() => setSelectedAgent(agent)}>
                   <td style={{ minWidth: 160 }}>
                     <div className="d-flex align-items-center gap-2">
                       <div className="position-relative">
                         <img src={agent.avatar} alt={agent.name} className="rounded-circle" width={28} height={28} />
                         <span
                           className="position-absolute rounded-circle border border-2 border-white"
-                          style={{ width: 10, height: 10, background: cfg.hex, bottom: 0, right: 0 }}
+                          style={{ width: 10, height: 10, background: aCfg.hex, bottom: 0, right: 0 }}
                         />
                       </div>
                       <span className="fs-13 fw-semibold text-dark">{agent.name}</span>
@@ -121,13 +129,13 @@ const SalesAgentsMapCard = () => {
                   </td>
                   <td>
                     <div className="d-flex align-items-center gap-2">
-                      <span className="rounded-circle flex-shrink-0" style={{ width: 8, height: 8, background: cfg.hex }} />
+                      <span className="rounded-circle flex-shrink-0" style={{ width: 8, height: 8, background: aCfg.hex }} />
                       <span className="fs-13 text-muted">{agent.currentLocation}</span>
                     </div>
                   </td>
                   <td>
-                    <Badge bg={`${cfg.color}-subtle`} text={cfg.color}>
-                      <i className={`fi ${cfg.icon} me-1`}></i>
+                    <Badge bg={`${aCfg.color}-subtle`} text={aCfg.color}>
+                      <i className={`fi ${aCfg.icon} me-1`}></i>
                       {agent.status}
                     </Badge>
                   </td>
@@ -139,6 +147,50 @@ const SalesAgentsMapCard = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Agent detail modal */}
+      <Modal show={!!selectedAgent} onHide={() => setSelectedAgent(null)} centered size="sm">
+        {selectedAgent && cfg && (
+          <>
+            <Modal.Header closeButton>
+              <Modal.Title as="h6" className="d-flex align-items-center gap-2">
+                <img src={selectedAgent.avatar} alt={selectedAgent.name} className="rounded-circle" width={32} height={32} />
+                {selectedAgent.name}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="d-flex align-items-center gap-2 mb-3">
+                <Badge bg={`${cfg.color}-subtle`} text={cfg.color}>
+                  <i className={`fi ${cfg.icon} me-1`}></i>
+                  {selectedAgent.status}
+                </Badge>
+                <span className="fs-13 text-muted">Updated {selectedAgent.lastUpdated}</span>
+              </div>
+              <div className="d-flex flex-column gap-2">
+                <div className="d-flex justify-content-between">
+                  <span className="fs-13 text-muted">Current Location</span>
+                  <span className="fs-13 fw-semibold">{selectedAgent.currentLocation}</span>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <span className="fs-13 text-muted">Coordinates</span>
+                  <span className="fs-13 fw-semibold">{selectedAgent.coords[0].toFixed(2)}, {selectedAgent.coords[1].toFixed(2)}</span>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <span className="fs-13 text-muted">Assigned Installations</span>
+                  <span className="fs-13 fw-semibold">{selectedAgent.assignedInstallations}</span>
+                </div>
+                <div className="d-flex justify-content-between">
+                  <span className="fs-13 text-muted">Phone</span>
+                  <span className="fs-13 fw-semibold">{selectedAgent.phone}</span>
+                </div>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="light" size="sm" onClick={() => setSelectedAgent(null)}>Close</Button>
+            </Modal.Footer>
+          </>
+        )}
+      </Modal>
     </Card>
   )
 }
