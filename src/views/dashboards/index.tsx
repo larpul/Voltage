@@ -7,7 +7,6 @@ import {
   SolarAppointmentsCard,
   WeeklyAppointmentsCard,
   ProjectPhasesCard,
-  HouseVisitMapCard,
   InstallationMapCard,
   SalesAgentsMapCard,
   SiteVisitCalendarCard,
@@ -50,9 +49,6 @@ const Solar = () => {
         </Col>
         <Col xl={12}>
           <SalesAgentsMapCard />
-        </Col>
-        <Col xl={12}>
-          <HouseVisitMapCard />
         </Col>
         <Col xl={12}>
           <SiteVisitCalendarCard />
