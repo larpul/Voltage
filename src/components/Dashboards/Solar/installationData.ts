@@ -23,6 +23,7 @@ export interface Installation {
   customer: string
   avatar: string
   address: string
+  coords: [number, number]
   systemSize: string
   phase: Phase
   phone: string
@@ -48,6 +49,7 @@ export const installations: Installation[] = [
     customer: 'Archie Tones',
     avatar: avatar1,
     address: '128 Maple St, Austin TX',
+    coords: [30.27, -97.74],
     systemSize: '8.5 kW',
     phase: 'Permit Review',
     phone: '(512) 555-0142',
@@ -87,6 +89,7 @@ export const installations: Installation[] = [
     customer: 'Holmes Cherry',
     avatar: avatar2,
     address: '45 Oak Ave, Denver CO',
+    coords: [39.74, -104.99],
     systemSize: '10.2 kW',
     phase: 'Completed',
     phone: '(303) 555-0187',
@@ -128,6 +131,7 @@ export const installations: Installation[] = [
     customer: 'Malanie Hanvey',
     avatar: avatar3,
     address: '72 Pine Rd, Phoenix AZ',
+    coords: [33.45, -112.07],
     systemSize: '6.0 kW',
     phase: 'Pending Install',
     phone: '(602) 555-0199',
@@ -168,6 +172,7 @@ export const installations: Installation[] = [
     customer: 'Kenneth Hune',
     avatar: avatar4,
     address: '15 Birch Ln, Portland OR',
+    coords: [45.52, -122.68],
     systemSize: '12.4 kW',
     phase: 'Site Survey',
     phone: '(503) 555-0110',
@@ -206,6 +211,7 @@ export const installations: Installation[] = [
     customer: 'Valentine Maton',
     avatar: avatar5,
     address: '301 Cedar Dr, Miami FL',
+    coords: [25.76, -80.19],
     systemSize: '9.8 kW',
     phase: 'Pending Install',
     phone: '(305) 555-0177',
@@ -246,6 +252,7 @@ export const installations: Installation[] = [
     customer: 'Selina Kyle',
     avatar: avatar6,
     address: '88 Elm Ct, Dallas TX',
+    coords: [32.78, -96.80],
     systemSize: '7.2 kW',
     phase: 'Completed',
     phone: '(214) 555-0133',
@@ -287,6 +294,7 @@ export const installations: Installation[] = [
     customer: 'Bruce Wayne',
     avatar: avatar1,
     address: '1007 Mountain Dr, Gotham NJ',
+    coords: [40.73, -74.17],
     systemSize: '15.0 kW',
     phase: 'Permit Review',
     phone: '(201) 555-0155',
@@ -326,6 +334,7 @@ export const installations: Installation[] = [
     customer: 'Diana Prince',
     avatar: avatar2,
     address: '1200 Themis Blvd, DC',
+    coords: [38.90, -77.03],
     systemSize: '11.5 kW',
     phase: 'Installation',
     phone: '(202) 555-0166',
