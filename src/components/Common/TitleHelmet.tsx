@@ -10,7 +10,7 @@ const TitleHelmet = ({ title }: PageTitleProps) => {
   return (
     <>
       <Helmet>
-        <title>{title} | Voltage</title>
+        <title>{title} | Volt360</title>
       </Helmet>
     </>
   )

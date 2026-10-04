@@ -106,9 +106,12 @@ const Header = ({ toggleMenu, navOpen }: HeaderProps) => {
         <div className="header-inner px-2 px-md-3">
           {/* header-left */}
           <div className="header-left d-flex align-items-center">
-            <Link to="/">
+            <Link to="/" className="me-2">
               <Logo />
             </Link>
+            <div className="header-btn me-2" onClick={handleLeftMenuCallBack} style={{ cursor: 'pointer' }}>
+              <i className="fi fi-rr-bars-staggered fs-20"></i>
+            </div>
             <DarkLight />
 
             <MegaMenu />
@@ -122,9 +125,6 @@ const Header = ({ toggleMenu, navOpen }: HeaderProps) => {
             </span>
             <Notifications />
             <Profile />
-            <div className="header-btn pe-md-0 d-lg-none" onClick={handleMegaMenuClick}>
-              <i className="fi fi-rr-menu-burger"></i>
-            </div>
           </div>
         </div>
       </header>

@@ -9,6 +9,8 @@ $color-schemes: (
   info: $info,
   danger: $danger,
   secondary: $secondary,
+  "black": $black,
+  "gray": $gray,
 );
 
 @mixin setTheme($theme, $color, $shade: 0) {

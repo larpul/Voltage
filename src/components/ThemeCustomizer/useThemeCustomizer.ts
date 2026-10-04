@@ -32,6 +32,12 @@ export default function useThemeCustomizer() {
       case 'secondary':
         updateSettings({ color: ThemeSettings.color.secondary })
         break
+      case 'black':
+        updateSettings({ color: ThemeSettings.color.black })
+        break
+      case 'gray':
+        updateSettings({ color: ThemeSettings.color.gray })
+        break
       default:
         updateSettings({ color: ThemeSettings.color.primary })
         break
@@ -182,8 +188,17 @@ export default function useThemeCustomizer() {
       case 'inter':
         updateSettings({ font: ThemeSettings.font.inter })
         break
-      default:
+      case 'public':
         updateSettings({ font: ThemeSettings.font.public })
+        break
+      case 'raleway':
+        updateSettings({ font: ThemeSettings.font.raleway })
+        break
+      case 'uber':
+        updateSettings({ font: ThemeSettings.font.uber })
+        break
+      default:
+        updateSettings({ font: ThemeSettings.font.raleway })
         break
     }
   }

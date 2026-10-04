@@ -16,7 +16,28 @@ const ThemeFont = ({ handleChangeThemeFont, themeFont, fontConstants }: ThemeFon
         Theme Font
       </h6>
       <Row className="g-3">
-        <Col xs={6} className="text-center">
+        <Col xs={3} className="text-center">
+          <Form.Check.Label htmlFor="themeRaleway" className="radio-card">
+            <Form.Check.Input
+              type="radio"
+              name="data-layout-font"
+              id="themeRaleway"
+              value={fontConstants.raleway}
+              onChange={(e) => handleChangeThemeFont(e.target.value)}
+              checked={themeFont === fontConstants.raleway}
+            />
+            <span className="radio-card-wrapper d-flex p-3 position-relative">
+              <span
+                className="fs-11 fw-semibold text-muted text-uppercase d-block"
+                style={{ letterSpacing: '0.5px' }}
+              >
+                Raleway
+              </span>
+              <span className="check-icon me-2 end-0 top-50 translate-middle-y position-absolute z-1"></span>
+            </span>
+          </Form.Check.Label>
+        </Col>
+        <Col xs={3} className="text-center">
           <Form.Check.Label htmlFor="themePublic" className="radio-card">
             <Form.Check.Input
               type="radio"
@@ -31,13 +52,13 @@ const ThemeFont = ({ handleChangeThemeFont, themeFont, fontConstants }: ThemeFon
                 className="fs-11 fw-semibold text-muted text-uppercase d-block"
                 style={{ letterSpacing: '0.5px' }}
               >
-                Public Sans
+                Public
               </span>
               <span className="check-icon me-2 end-0 top-50 translate-middle-y position-absolute z-1"></span>
             </span>
           </Form.Check.Label>
         </Col>
-        <Col xs={6} className="text-center">
+        <Col xs={3} className="text-center">
           <Form.Check.Label htmlFor="themeInter" className="radio-card">
             <Form.Check.Input
               type="radio"
@@ -53,6 +74,27 @@ const ThemeFont = ({ handleChangeThemeFont, themeFont, fontConstants }: ThemeFon
                 style={{ letterSpacing: '0.5px' }}
               >
                 Inter
+              </span>
+              <span className="check-icon me-2 end-0 top-50 translate-middle-y position-absolute z-1"></span>
+            </span>
+          </Form.Check.Label>
+        </Col>
+        <Col xs={3} className="text-center">
+          <Form.Check.Label htmlFor="themeUber" className="radio-card">
+            <Form.Check.Input
+              type="radio"
+              name="data-layout-font"
+              id="themeUber"
+              value={fontConstants.uber}
+              onChange={(e) => handleChangeThemeFont(e.target.value)}
+              checked={themeFont === fontConstants.uber}
+            />
+            <span className="radio-card-wrapper d-flex p-3 position-relative">
+              <span
+                className="fs-11 fw-semibold text-muted text-uppercase d-block"
+                style={{ letterSpacing: '0.5px' }}
+              >
+                Uber
               </span>
               <span className="check-icon me-2 end-0 top-50 translate-middle-y position-absolute z-1"></span>
             </span>

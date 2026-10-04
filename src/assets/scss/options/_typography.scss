@@ -10,3 +10,11 @@
 html[data-theme-font='inter'] {
   --#{$prefix}body-font-family: 'Inter';
 }
+
+html[data-theme-font='raleway'] {
+  --#{$prefix}body-font-family: 'Raleway';
+}
+
+html[data-theme-font='uber'] {
+  --#{$prefix}body-font-family: 'UberMove';
+}

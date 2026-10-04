@@ -268,6 +268,80 @@ const ColorScheme = ({ handleChangeColorScheme, colorScheme, schemeConstants }: 
             </span>
           </Form.Check.Label>
         </Col>
+        <Col xs={6} className="text-center">
+          <Form.Check.Label htmlFor="colorSchemeBlack" className="radio-card">
+            <Form.Check.Input
+              type="radio"
+              name="data-color-scheme"
+              id="colorSchemeBlack"
+              value={schemeConstants.black}
+              onChange={(e) => handleChangeColorScheme(e.target.value)}
+              checked={colorScheme === schemeConstants.black}
+            />
+            <span className="radio-card-wrapper d-flex p-0 position-relative">
+              <span className="w-100 d-flex" style={{ padding: '2px' }}>
+                <span
+                  className="rounded-start"
+                  style={{ width: '33.333%', height: '2.5rem', backgroundColor: '#000000' }}
+                ></span>
+                <span
+                  style={{ width: '33.333%', height: '2.5rem', backgroundColor: '#000000', opacity: '0.75' }}
+                ></span>
+                <span
+                  style={{ width: '33.333%', height: '2.5rem', backgroundColor: '#000000', opacity: '0.50' }}
+                ></span>
+                <span
+                  className="rounded-end"
+                  style={{ width: '33.333%', height: '2.5rem', backgroundColor: '#000000', opacity: '0.25' }}
+                ></span>
+              </span>
+              <span
+                className="fs-11 fw-semibold text-white text-uppercase d-block position-absolute top-50 translate-middle-y position-absolute z-1 ms-3"
+                style={{ letterSpacing: '0.5px' }}
+              >
+                Black
+              </span>
+              <span className="check-icon me-2 end-0 top-50 translate-middle-y position-absolute z-1"></span>
+            </span>
+          </Form.Check.Label>
+        </Col>
+        <Col xs={6} className="text-center">
+          <Form.Check.Label htmlFor="colorSchemeGray" className="radio-card">
+            <Form.Check.Input
+              type="radio"
+              name="data-color-scheme"
+              id="colorSchemeGray"
+              value={schemeConstants.gray}
+              onChange={(e) => handleChangeColorScheme(e.target.value)}
+              checked={colorScheme === schemeConstants.gray}
+            />
+            <span className="radio-card-wrapper d-flex p-0 position-relative">
+              <span className="w-100 d-flex" style={{ padding: '2px' }}>
+                <span
+                  className="rounded-start"
+                  style={{ width: '33.333%', height: '2.5rem', backgroundColor: '#6c757d' }}
+                ></span>
+                <span
+                  style={{ width: '33.333%', height: '2.5rem', backgroundColor: '#6c757d', opacity: '0.75' }}
+                ></span>
+                <span
+                  style={{ width: '33.333%', height: '2.5rem', backgroundColor: '#6c757d', opacity: '0.50' }}
+                ></span>
+                <span
+                  className="rounded-end"
+                  style={{ width: '33.333%', height: '2.5rem', backgroundColor: '#6c757d', opacity: '0.25' }}
+                ></span>
+              </span>
+              <span
+                className="fs-11 fw-semibold text-white text-uppercase d-block position-absolute top-50 translate-middle-y position-absolute z-1 ms-3"
+                style={{ letterSpacing: '0.5px' }}
+              >
+                Gray
+              </span>
+              <span className="check-icon me-2 end-0 top-50 translate-middle-y position-absolute z-1"></span>
+            </span>
+          </Form.Check.Label>
+        </Col>
       </Row>
     </>
   )

@@ -10,6 +10,8 @@ export const ThemeSettings = {
     info: 'info',
     danger: 'danger',
     secondary: 'secondary',
+    black: 'black',
+    gray: 'gray',
   },
   layout: {
     type: { vertical: 'vertical', horizontal: 'horizontal' },
@@ -24,7 +26,7 @@ export const ThemeSettings = {
     },
   },
   theme: { light: 'light', dark: 'dark' },
-  font: { public: 'public', inter: 'inter' },
+  font: { public: 'public', inter: 'inter', raleway: 'raleway', uber: 'uber' },
   header: {
     theme: { light: 'light', dark: 'dark' },
     logo: { hidden: 'fullscreen', show: '' },
@@ -90,7 +92,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
             : ThemeSettings.sidebar.menu.soft,
       },
       theme: params['theme_mode'] === 'dark' ? ThemeSettings.theme.dark : ThemeSettings.theme.light,
-      font: params['theme_font'] === 'inter' ? ThemeSettings.font.inter : ThemeSettings.font.public,
+      font: params['theme_font'] === 'inter'
+        ? ThemeSettings.font.inter
+        : params['theme_font'] === 'uber'
+          ? ThemeSettings.font.uber
+          : ThemeSettings.font.raleway,
       customizer: ThemeSettings.customizer.hidden,
     }
   }
