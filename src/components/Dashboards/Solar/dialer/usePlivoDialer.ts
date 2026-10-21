@@ -1,6 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Plivo from 'plivo-browser-sdk'
-import { credentialIssue, isPlivoConfigured, plivoConfig, toDialableNumber } from './dialerConfig'
+import {
+  credentialIssue,
+  describeCallFailure,
+  isPlivoConfigured,
+  plivoConfig,
+  toDialableNumber,
+} from './dialerConfig'
 import { CallOutcome, RecentCall, addRecentCall, loadRecentCalls } from './recentCalls'
 
 export type LoginStatus = 'unconfigured' | 'connecting' | 'ready' | 'error'
@@ -84,7 +90,9 @@ export const usePlivoDialer = () => {
     client.on('onCallTerminated', () => finishCall())
     client.on('onCallFailed', (cause: unknown) => {
       setCallError(
-        typeof cause === 'string' && cause ? `Call failed: ${cause}` : 'Call failed — Plivo rejected the call.',
+        typeof cause === 'string' && cause
+          ? describeCallFailure(cause)
+          : 'Call failed — Plivo rejected the call.',
       )
       callRef.current = {
         ...callRef.current,

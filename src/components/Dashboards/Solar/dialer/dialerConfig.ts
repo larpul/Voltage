@@ -37,6 +37,25 @@ export const toDialableNumber = (value: string) => {
   return cleaned.replace(/\+/g, '')
 }
 
+/**
+ * Plivo reports a rejected outbound leg and a busy destination with the same
+ * 486 "Busy" cause, so point at the call log instead of echoing the code.
+ */
+export const describeCallFailure = (cause: string) => {
+  const value = cause.toLowerCase()
+  if (value.includes('busy')) {
+    return 'Call rejected as Busy. Check Voice → Logs → Calls in your Plivo Console for the hangup cause, and make sure the endpoint is attached to an application whose answer URL returns a <Dial> element.'
+  }
+  if (value.includes('media')) {
+    return 'Microphone problem — allow microphone access for this page and try again.'
+  }
+  if (value.includes('invalid') || value.includes('not found') || value.includes('unavailable')) {
+    return `${cause} — check the number is valid and that geo permissions allow the destination country.`
+  }
+  if (value.includes('no answer')) return 'No answer.'
+  return cause
+}
+
 export const formatDuration = (seconds: number) => {
   const minutes = Math.floor(seconds / 60)
   return `${minutes}:${String(seconds % 60).padStart(2, '0')}`
