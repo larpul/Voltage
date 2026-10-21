@@ -7,6 +7,21 @@
       "name": "VITE_GOOGLE_CLIENT_ID",
       "description": "Google OAuth 2.0 Client ID for Calendar API access. Create one at https://console.cloud.google.com/apis/credentials (enable Calendar API, create an OAuth 2.0 Client ID of type Web Application, add the preview origin to Authorized JavaScript origins).",
       "requiredAtBoot": false
+    },
+    {
+      "name": "VITE_PLIVO_ENDPOINT_USERNAME",
+      "description": "Plivo SIP endpoint username for the in-browser dialer (Plivo Console -> Voice -> Endpoints, looks like 1234567890_agent01). The dialer stays in its Setup required state until this and the endpoint password are provided.",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "VITE_PLIVO_ENDPOINT_PASSWORD",
+      "description": "Password for that Plivo SIP endpoint. Plivo's browser SDK requires it client-side, so anyone who can load the dialer page could read it - use a dedicated agent endpoint rather than your Plivo account password.",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "VITE_PLIVO_CALLER_ID",
+      "description": "Optional Plivo phone number shown as the caller ID on the dialer, in E.164 format (e.g. +15551234567), from Plivo Console -> Phone Numbers.",
+      "requiredAtBoot": false
     }
   ]
 }

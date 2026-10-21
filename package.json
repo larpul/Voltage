@@ -61,6 +61,7 @@
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
     "nouislider-react": "^3.4.1",
+    "plivo-browser-sdk": "^2.2.21",
     "prism-react-renderer": "^2.3.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",

@@ -10,6 +10,7 @@ import InstallationMapCard from './InstallationMapCard'
 import SalesAgentsMapCard from './SalesAgentsMapCard'
 import SiteVisitCalendarCard from './SiteVisitCalendarCard'
 import SmartSchedulingCard from './SmartSchedulingCard'
+import PlivoDialerCard from './PlivoDialerCard'
 import LogoBanner from './LogoBanner'
 
 export {
@@ -25,5 +26,6 @@ export {
   SalesAgentsMapCard,
   SiteVisitCalendarCard,
   SmartSchedulingCard,
+  PlivoDialerCard,
   LogoBanner,
 }

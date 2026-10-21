@@ -12,6 +12,7 @@ import {
   SalesAgentsMapCard,
   SiteVisitCalendarCard,
   SmartSchedulingCard,
+  PlivoDialerCard,
 } from '@/components/Dashboards/Solar'
 import { SalesLocationCard } from '@/components/Dashboards/Ecommerce'
 import { Col, Row } from 'react-bootstrap'
@@ -38,6 +39,9 @@ const Solar = () => {
         </Col>
         <Col xl={4}>
           <SmartSchedulingCard />
+        </Col>
+        <Col xl={8}>
+          <PlivoDialerCard />
         </Col>
         <Col xl={8}>
           <SalesLocationCard />
