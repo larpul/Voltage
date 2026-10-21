@@ -15,6 +15,7 @@ const PlivoDialerCard = () => {
   const {
     loginStatus,
     loginError,
+    callError,
     callStatus,
     number,
     setNumber,
@@ -78,6 +79,8 @@ const PlivoDialerCard = () => {
               </div>
             ) : loginStatus === 'error' ? (
               <div className="alert alert-danger py-2 fs-12 mt-2 mb-3">{loginError}</div>
+            ) : callError ? (
+              <div className="alert alert-danger py-2 fs-12 mt-2 mb-3">{callError}</div>
             ) : (
               <div className="text-muted fs-12 mt-2 mb-3">
                 {loginStatus === 'connecting'

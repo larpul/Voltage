@@ -27,6 +27,7 @@ export const usePlivoDialer = () => {
   )
   const [loginError, setLoginError] = useState(configIssue)
   const [callStatus, setCallStatus] = useState<CallStatus>('idle')
+  const [callError, setCallError] = useState('')
   const [number, setNumber] = useState('')
   const [elapsed, setElapsed] = useState(0)
   const [muted, setMuted] = useState(false)
@@ -80,7 +81,10 @@ export const usePlivoDialer = () => {
       setElapsed(0)
     })
     client.on('onCallTerminated', () => finishCall())
-    client.on('onCallFailed', () => {
+    client.on('onCallFailed', (cause: unknown) => {
+      setCallError(
+        typeof cause === 'string' && cause ? `Call failed: ${cause}` : 'Call failed — Plivo rejected the call.',
+      )
       callRef.current = {
         ...callRef.current,
         outcome: callRef.current.answeredAt ? 'answered' : 'failed',
@@ -118,6 +122,7 @@ export const usePlivoDialer = () => {
   const placeCall = useCallback(() => {
     const client = clientRef.current
     if (!client || !canDial) return
+    setCallError('')
     callRef.current = { number: digits, outcome: 'canceled', answeredAt: 0 }
     setCallStatus('dialing')
     client.call(digits, {})
@@ -136,6 +141,7 @@ export const usePlivoDialer = () => {
   return {
     loginStatus,
     loginError,
+    callError,
     callStatus,
     number,
     setNumber,
