@@ -46,6 +46,7 @@ const RecentCallsList = ({ calls, onSelect }: RecentCallsListProps) => (
                 <span className="d-block fs-11 text-muted">
                   {outcomeLabels[call.outcome]}
                   {call.durationSec > 0 ? ` · ${formatDuration(call.durationSec)}` : ''}
+                  {call.outcome === 'failed' && call.reason ? ` · ${call.reason}` : ''}
                 </span>
               </span>
               <span className="fs-11 text-muted flex-shrink-0">{formatCallTime(call.at)}</span>

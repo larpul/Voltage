@@ -16,7 +16,7 @@ const configIssue = credentialIssue()
  */
 export const usePlivoDialer = () => {
   const clientRef = useRef<Plivo['client'] | null>(null)
-  const callRef = useRef<{ number: string; outcome: CallOutcome; answeredAt: number }>({
+  const callRef = useRef<{ number: string; outcome: CallOutcome; answeredAt: number; reason?: string }>({
     number: '',
     outcome: 'canceled',
     answeredAt: 0,
@@ -34,12 +34,13 @@ export const usePlivoDialer = () => {
   const [recentCalls, setRecentCalls] = useState<RecentCall[]>(loadRecentCalls)
 
   const finishCall = useCallback(() => {
-    const { number: dialed, outcome, answeredAt } = callRef.current
+    const { number: dialed, outcome, answeredAt, reason } = callRef.current
     if (dialed) {
       setRecentCalls((calls) =>
         addRecentCall(calls, {
           number: dialed,
           outcome,
+          reason: reason ?? undefined,
           durationSec: answeredAt ? Math.round((Date.now() - answeredAt) / 1000) : 0,
           at: new Date().toISOString(),
         }),
@@ -88,6 +89,7 @@ export const usePlivoDialer = () => {
       callRef.current = {
         ...callRef.current,
         outcome: callRef.current.answeredAt ? 'answered' : 'failed',
+        reason: typeof cause === 'string' ? cause : undefined,
       }
       finishCall()
     })
@@ -119,10 +121,24 @@ export const usePlivoDialer = () => {
 
   const backspace = useCallback(() => setNumber((value) => value.slice(0, -1)), [])
 
-  const placeCall = useCallback(() => {
+  const placeCall = useCallback(async () => {
     const client = clientRef.current
     if (!client || !canDial) return
     setCallError('')
+    // Plivo needs the microphone itself, so check it first: a blocked or absent
+    // mic then shows a readable reason instead of an opaque call failure.
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      stream.getTracks().forEach((track) => track.stop())
+    } catch (error) {
+      const denied = error instanceof DOMException && error.name === 'NotAllowedError'
+      setCallError(
+        denied
+          ? 'Microphone access was blocked. Allow the microphone for this page — if the embedded preview refuses it, open the app in its own browser tab — then try again.'
+          : 'No microphone is available to this browser, so Plivo cannot place the call.',
+      )
+      return
+    }
     callRef.current = { number: digits, outcome: 'canceled', answeredAt: 0 }
     setCallStatus('dialing')
     client.call(digits, {})

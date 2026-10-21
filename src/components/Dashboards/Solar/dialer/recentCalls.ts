@@ -6,6 +6,8 @@ export interface RecentCall {
   outcome: CallOutcome
   durationSec: number
   at: string
+  /** Why a failed call died, e.g. "User Denied Media Access". */
+  reason?: string
 }
 
 const STORAGE_KEY = 'solar.plivoDialer.recentCalls'
