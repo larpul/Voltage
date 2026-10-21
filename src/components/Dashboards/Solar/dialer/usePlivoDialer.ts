@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Plivo from 'plivo-browser-sdk'
-import { isPlivoConfigured, plivoConfig, toDialableNumber } from './dialerConfig'
+import { credentialIssue, isPlivoConfigured, plivoConfig, toDialableNumber } from './dialerConfig'
 import { CallOutcome, RecentCall, addRecentCall, loadRecentCalls } from './recentCalls'
 
 export type LoginStatus = 'unconfigured' | 'connecting' | 'ready' | 'error'
 export type CallStatus = 'idle' | 'dialing' | 'ringing' | 'connected'
 
 const MIN_DIAL_LENGTH = 3
+const configIssue = credentialIssue()
 
 /**
  * Registers the Plivo endpoint in the browser and exposes the dialer actions.
@@ -22,9 +23,9 @@ export const usePlivoDialer = () => {
   })
 
   const [loginStatus, setLoginStatus] = useState<LoginStatus>(
-    isPlivoConfigured ? 'connecting' : 'unconfigured',
+    !isPlivoConfigured ? 'unconfigured' : configIssue ? 'error' : 'connecting',
   )
-  const [loginError, setLoginError] = useState('')
+  const [loginError, setLoginError] = useState(configIssue)
   const [callStatus, setCallStatus] = useState<CallStatus>('idle')
   const [number, setNumber] = useState('')
   const [elapsed, setElapsed] = useState(0)
@@ -50,7 +51,7 @@ export const usePlivoDialer = () => {
   }, [])
 
   useEffect(() => {
-    if (!isPlivoConfigured) return
+    if (!isPlivoConfigured || configIssue) return
 
     const plivo = new Plivo({ debug: 'OFF', permOnClick: true, closeProtection: false })
     const client = plivo.client
@@ -60,9 +61,16 @@ export const usePlivoDialer = () => {
       setLoginStatus('ready')
       setLoginError('')
     })
-    client.on('onLoginFailed', (code: number, message: string) => {
+    client.on('onLoginFailed', (...args: unknown[]) => {
+      // The SDK emits a single message string here, but earlier versions also
+      // passed an error code first — keep whichever strings arrived.
+      const message = args.filter((arg): arg is string => typeof arg === 'string').pop()
       setLoginStatus('error')
-      setLoginError(message || `Plivo endpoint login failed (code ${code})`)
+      setLoginError(
+        message?.includes('Failed to create user agent')
+          ? 'Plivo could not register the endpoint. Check the endpoint username and password in Plivo Console → Voice → Endpoints.'
+          : message || 'Plivo could not register the endpoint.',
+      )
     })
     client.on('onCalling', () => setCallStatus('dialing'))
     client.on('onCallRemoteRinging', () => setCallStatus('ringing'))

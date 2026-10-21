@@ -4,13 +4,28 @@ export interface PlivoDialerConfig {
   callerId: string
 }
 
+/**
+ * The SDK builds the SIP address itself as `<username>@phone.plivo.com`, so a
+ * pasted "sip:user@phone.plivo.com" (or a trailing newline) has to be reduced
+ * to the bare endpoint username first.
+ */
+const normalizeEndpointUsername = (value: string) =>
+  value.trim().replace(/^sips?:/i, '').split('@')[0].trim()
+
 export const plivoConfig: PlivoDialerConfig = {
-  username: import.meta.env.VITE_PLIVO_ENDPOINT_USERNAME ?? '',
-  password: import.meta.env.VITE_PLIVO_ENDPOINT_PASSWORD ?? '',
-  callerId: import.meta.env.VITE_PLIVO_CALLER_ID ?? '',
+  username: normalizeEndpointUsername(import.meta.env.VITE_PLIVO_ENDPOINT_USERNAME ?? ''),
+  password: (import.meta.env.VITE_PLIVO_ENDPOINT_PASSWORD ?? '').trim(),
+  callerId: (import.meta.env.VITE_PLIVO_CALLER_ID ?? '').trim(),
 }
 
 export const isPlivoConfigured = Boolean(plivoConfig.username && plivoConfig.password)
+
+export const credentialIssue = () => {
+  if (/\s/.test(plivoConfig.username)) {
+    return 'The Plivo endpoint username still contains spaces. Copy just the Username shown in Plivo Console → Voice → Endpoints.'
+  }
+  return ''
+}
 
 /**
  * Keeps digits (and a leading +) so numbers pasted as "(513) 555-0142"
